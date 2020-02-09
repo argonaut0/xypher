@@ -50,7 +50,7 @@ public abstract class Cipher {
     }
 
     /**
-     * REQUIRES: Text must be comprised of [A-Z][0-9], and unencoded
+     * REQUIRES: Text should be unencoded
      * EFFECTS: Returns a copy of the input text, transformed.
      *
      * @param text The input text to be transformed.
@@ -59,7 +59,7 @@ public abstract class Cipher {
     public abstract String encode(String text);
 
     /**
-     * REQUIRES: Text must be comprised of [A-Z][0-9], and previously encoded by this cipher at the same configuration.
+     * REQUIRES: Text should be previously encoded by this cipher at the same configuration.
      * EFFECTS: Returns a copy of the input text, inversely transformed.
      *
      * @param text The input text to be inversely transformed.
