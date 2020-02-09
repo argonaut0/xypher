@@ -37,3 +37,6 @@ I want to be able to:
  - http://practicalcryptography.com/ciphers/
  - http://rumkin.com/tools/cipher/
  - https://brilliant.org/wiki/enigma-machine/
+ - https://wiki.c2.com/
+ - https://stackoverflow.com/questions/16458564/convert-character-to-ascii-numeric-value-in-java
+ - https://www.ascii-code.com/
