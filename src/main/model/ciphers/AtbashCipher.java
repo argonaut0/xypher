@@ -9,7 +9,6 @@ package model.ciphers;
  * Reference: http://practicalcryptography.com/ciphers/classical-era/atbash-cipher/
  *
  * @author Jason Hsu
- * @version 1.0.0
  */
 public class AtbashCipher extends Cipher {
 

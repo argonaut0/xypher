@@ -5,7 +5,6 @@ package model.ciphers;
  * Reference: http://practicalcryptography.com/ciphers/classical-era/rot13/
  *
  * @author Jason Hsu
- * @version 0.0.0
  */
 public class Rot13Cipher extends Cipher {
 

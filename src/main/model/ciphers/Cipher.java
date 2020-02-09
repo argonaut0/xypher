@@ -5,7 +5,6 @@ package model.ciphers;
  * Ciphers are mutable..sigh.
  *
  * @author Jason Hsu
- * @version 1.0.0
  */
 public abstract class Cipher {
 
