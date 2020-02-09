@@ -25,6 +25,13 @@ public class CipherTest {
     }
 
     @Test
+    void mapTest() {
+        assertEquals(1, Cipher.ALPHA_MAP.get("A"));
+        assertEquals(26, Cipher.ALPHA_MAP.get("Z"));
+        assertEquals(4, Cipher.ALPHA_MAP.get("D"));
+    }
+
+    @Test
     void nameTest() {
         assertEquals("TestCipher", cipher.toString());
     }
