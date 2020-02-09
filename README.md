@@ -27,3 +27,13 @@ I want to be able to:
 - Configure settings for each algorithm (if available).
 - User cipher algorithms to convert back and forth from legible text.
 - Add algorithms to a list to be applied sequentially.
+
+
+
+
+## References
+ (To be formatted)
+ - https://www.tutorialspoint.com/java/java_documentation.htm
+ - http://practicalcryptography.com/ciphers/
+ - http://rumkin.com/tools/cipher/
+ - https://brilliant.org/wiki/enigma-machine/
