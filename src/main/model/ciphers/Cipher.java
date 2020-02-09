@@ -12,6 +12,34 @@ public abstract class Cipher {
     private String cipherName;
 
     /**
+     * REQUIRES: A text string comprised of characters defined in ASCII.
+     * EFFECTS: Returns the ASCII representation of a string.
+     * @param text The string to be converted.
+     * @return An array representing ASCII codes.
+     */
+    public static int[] toAscii(String text) {
+        int[] ascii = new int[text.length()];
+        for (int i = 0; i < text.length(); i++) {
+            ascii[i] = text.charAt(i);
+        }
+        return ascii;
+    }
+
+    /**
+     * REQUIRES: An int array comprised of ASCII codes.
+     * EFFECTS: Returns the string represented by ASCII codes.
+     * @param ascii ASCII codes to be converted.
+     * @return A string converted from ASCII.
+     */
+    public static String fromAscii(int[] ascii) {
+        String text = "";
+        for (int c : ascii) {
+            text = text + (char)c;
+        }
+        return text;
+    }
+
+    /**
      * MODIFIES: this
      * EFFECTS: Initializes the constant name of the {@link Cipher}
      *
