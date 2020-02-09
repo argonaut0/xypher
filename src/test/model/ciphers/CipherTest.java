@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CipherTest {
-    Cipher cipher;
+    private Cipher cipher;
 
     @BeforeEach
     void runBefore() {
