@@ -25,7 +25,7 @@ digital security today, and because of the mathematics that are involved.
 I want to be able to:
 - Select from a list of cipher algorithms.
 - Configure settings for each algorithm (if available).
-- User cipher algorithms to convert back and forth from legible text.
+- Use cipher algorithms to convert back and forth from legible text.
 - Add algorithms to a list to be applied sequentially.
 
 
