@@ -3,10 +3,13 @@ package model.ciphers;
 /**
  * Represents an implementation of the Atbash Cipher, a substitution cipher that replaces every letter of position *n*
  * in the alphabet (starting from 1) with the letter of position *27 - n*
+ *
+ * This transformation is invertible.
+ *
  * Reference: http://practicalcryptography.com/ciphers/classical-era/atbash-cipher/
  *
  * @author Jason Hsu
- * @version 0.0.0
+ * @version 1.0.0
  */
 public class AtbashCipher extends Cipher {
 
