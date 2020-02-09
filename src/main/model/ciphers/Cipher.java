@@ -1,5 +1,7 @@
 package model.ciphers;
 
+import java.util.HashMap;
+
 /**
  * Represents an abstract elementary {@link Cipher} that performs transformations on text.
  * Ciphers are mutable..sigh.
@@ -7,7 +9,21 @@ package model.ciphers;
  * @author Jason Hsu
  */
 public abstract class Cipher {
+    /**
+     * A map that maps the alphabet to positions 1-26
+     */
+    public static final HashMap<String, Integer> ALPHA_MAP = new HashMap<String, Integer>() {
+        {
+            String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for (int i = 1; i < 27; i++) {
+                put(upper.substring(i - 1, i), i);
+            }
+        }
+    };
 
+    /**
+     * The name of the Cipher
+     */
     private String cipherName;
 
     /**
