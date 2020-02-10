@@ -21,6 +21,15 @@ public abstract class Cipher {
         }
     };
 
+    public static final HashMap<Integer, String> POS_MAP = new HashMap<Integer, String>() {
+        {
+            String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for (int i = 1; i < 27; i++) {
+                put(i, upper.substring(i - 1, i));
+            }
+        }
+    };
+
     /**
      * The name of the Cipher
      */
@@ -31,6 +40,7 @@ public abstract class Cipher {
      * EFFECTS: Returns the ASCII representation of a string.
      * @param text The string to be converted.
      * @return An array representing ASCII codes.
+     * @deprecated Use ALPHA_MAP instead
      */
     public static int[] toAscii(String text) {
         int[] ascii = new int[text.length()];
@@ -45,6 +55,7 @@ public abstract class Cipher {
      * EFFECTS: Returns the string represented by ASCII codes.
      * @param ascii ASCII codes to be converted.
      * @return A string converted from ASCII.
+     * @deprecated Use POS_MAP instead
      */
     public static String fromAscii(int[] ascii) {
         String text = "";
