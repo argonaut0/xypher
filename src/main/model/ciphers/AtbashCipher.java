@@ -1,5 +1,7 @@
 package model.ciphers;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Represents an implementation of the Atbash Cipher, a substitution cipher that replaces every letter of position *n*
  * in the alphabet (starting from 1) with the letter of position *27 - n*
@@ -9,17 +11,17 @@ package model.ciphers;
  * Reference: http://practicalcryptography.com/ciphers/classical-era/atbash-cipher/
  *
  * @author Jason Hsu
- * @version 1.0.0
  */
 public class AtbashCipher extends Cipher {
 
     /**
-     * Represents the sum of any two opposing ASCII letter codes.
+     * Represents the sum of any two opposing letter positions.
      * Ex. A + Z, B + Y, C + X
      */
-    private static final int UPPER_ASCII_SUM = 90 + 65;
+    private static final int LETTER_SUM = 1 + 26;
     /**
      * The ASCII code for a space.
+     * @deprecated No longer using ascii
      */
     private static final int SPACE_CODE = 32;
 
@@ -36,13 +38,17 @@ public class AtbashCipher extends Cipher {
      */
     @Override
     public String encode(String text) {
-        int[] ascii = Cipher.toAscii(text.toUpperCase()); // temporary guard for uppercase
-        for (int i = 0; i < ascii.length; i++) {
-            if (ascii[i] != SPACE_CODE) {
-                ascii[i] = UPPER_ASCII_SUM - ascii[i];
+        String letters = text.toUpperCase(); // temporary guard for uppercase
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < letters.length(); i++) {
+            if (letters.substring(i, i + 1).equals(" ")) {
+                result.append(" ");
+            } else {
+                result.append(Cipher.POS_MAP.get(
+                        LETTER_SUM - Cipher.ALPHA_MAP.get(letters.substring(i, i + 1))));
             }
         }
-        return Cipher.fromAscii(ascii);
+        return result.toString();
     }
 
     /**
