@@ -6,20 +6,10 @@ package model.ciphers;
  *
  * @author Jason Hsu
  */
-public class Rot13Cipher extends Cipher {
+public class Rot13Cipher extends CaesarCipher {
 
     public Rot13Cipher() {
-        super("Rot13Cipher");
-    }
-
-    @Override
-    public String encode(String text) {
-        return null; // todo
-    }
-
-    @Override
-    public String decode(String text) {
-        return null; // todo
+        super(13, "Rot13Cipher");
     }
 }
 
