@@ -100,4 +100,8 @@ public class CaesarCipher extends Cipher {
         int newPosition = shiftPosition(ALPHA_MAP.get(letter.toUpperCase()), -letterShift);
         return POS_MAP.get(newPosition);
     }
+
+    public int getShift() {
+        return letterShift;
+    }
 }
