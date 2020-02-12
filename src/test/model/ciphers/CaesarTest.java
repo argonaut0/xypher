@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for {@link CaesarCipher}
+ */
 public class CaesarTest {
     private CaesarCipher caesarCipher1;
     private CaesarCipher caesarCipher6;

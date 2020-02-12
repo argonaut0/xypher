@@ -11,6 +11,9 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for {@link CipherSequence}
+ */
 public class CipherSequenceTest {
     private CipherSequence sequence;
     private LinkedList<Cipher> refList;
