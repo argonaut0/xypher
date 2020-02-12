@@ -2,6 +2,9 @@ package model.ciphers;
 
 /**
  * Represents an implementation of the Caesar Cipher.
+ *
+ * Reference: http://practicalcryptography.com/ciphers/classical-era/caesar/
+ *
  * @author Jason Hsu
  */
 public class CaesarCipher extends Cipher {
@@ -62,24 +65,32 @@ public class CaesarCipher extends Cipher {
     }
 
     /**
-     * REQUIRES: letterPosition [1-26], shift (x | xeZ)
+     * REQUIRES: letterPosition [0-25], shift (x | xeZ)
+     * EFFECTS: Returns the position of the shifted letter.
      *
-     * @param letterPosition The position of the initial letter
+     * @param letterPosition The position of the initial letter.
+     * @param shift The amount to shift.
      * @return The position of the shifted letter
      */
     protected int shiftPosition(int letterPosition, int shift) {
-        int shifted = letterPosition + shift;
-        if (shifted > 26) {
-            shifted = shifted - 26;
-        } else if (shifted < 1) {
-            shifted = shifted + 26;
-        }
-        return shifted;
+        return (letterPosition + shift) % 26;
+    }
+
+    /**
+     * REQUIRES: letterPosition [0-25], shift (x | xeZ)
+     * EFFECTS: Returns the position of the unshifted letter.
+     *
+     * @param letterPosition The position of the shifted letter.
+     * @param shift The amount shifted.
+     * @return The position of the initial letter.
+     */
+    protected int unshiftPosition(int letterPosition, int shift) {
+        return  (letterPosition + (26 - (shift % 26))) % 26;
     }
 
     /**
      * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter shifted by letterShift
+     * EFFECTS: Returns the corresponding letter shifted by letterShift amount
      *
      * @param letter The letter to be encoded
      * @return The output letter
@@ -91,13 +102,13 @@ public class CaesarCipher extends Cipher {
 
     /**
      * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter unshifted by letterShift
+     * EFFECTS: Returns the corresponding letter unshifted by letterShift amount
      *
      * @param letter The letter to be decoded
      * @return The output letter
      */
     protected String decodeLetter(String letter) {
-        int newPosition = shiftPosition(ALPHA_MAP.get(letter.toUpperCase()), -letterShift);
+        int newPosition = unshiftPosition(ALPHA_MAP.get(letter.toUpperCase()), letterShift);
         return POS_MAP.get(newPosition);
     }
 
