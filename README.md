@@ -41,3 +41,4 @@ I want to be able to:
  - https://stackoverflow.com/questions/16458564/convert-character-to-ascii-numeric-value-in-java
  - https://www.ascii-code.com/
  - https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way
+ - https://www.geeksforgeeks.org/reflection-in-java/
