@@ -33,15 +33,7 @@ public class CaesarCipher extends Cipher {
      */
     @Override
     public String encode(String text) {
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (text.substring(i, i + 1).equals(" ")) {
-                output.append(" ");
-            } else {
-                output.append(encodeLetter(text.substring(i, i + 1)));
-            }
-        }
-        return output.toString();
+        return encodeString(text, this::encodeLetter);
     }
 
     /**
