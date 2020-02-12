@@ -1,4 +1,4 @@
 *.class
 workspace.xml
 uiDesigner.xml
-./out
+/out/
