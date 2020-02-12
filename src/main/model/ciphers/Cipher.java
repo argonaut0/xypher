@@ -10,13 +10,13 @@ import java.util.HashMap;
  */
 public abstract class Cipher {
     /**
-     * A map that maps the alphabet to positions 1-26
+     * A map that maps the alphabet to positions 0-26
      */
     public static final HashMap<String, Integer> ALPHA_MAP = new HashMap<String, Integer>() {
         {
             String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            for (int i = 1; i < 27; i++) {
-                put(upper.substring(i - 1, i), i);
+            for (int i = 0; i < 26; i++) {
+                put(upper.substring(i, i + 1), i);
             }
         }
     };
@@ -24,8 +24,8 @@ public abstract class Cipher {
     public static final HashMap<Integer, String> POS_MAP = new HashMap<Integer, String>() {
         {
             String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            for (int i = 1; i < 27; i++) {
-                put(i, upper.substring(i - 1, i));
+            for (int i = 0; i < 26; i++) {
+                put(i, upper.substring(i, i + 1));
             }
         }
     };
