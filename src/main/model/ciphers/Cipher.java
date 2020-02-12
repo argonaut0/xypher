@@ -9,6 +9,27 @@ import java.util.HashMap;
  * @author Jason Hsu
  */
 public abstract class Cipher {
+
+    /**
+     * todo
+     */
+    protected interface LetterEncoder {
+        String encode(String inputLetter);
+    }
+
+    protected String encodeString(String text, LetterEncoder le) {
+        text = text.toUpperCase(); // temporary guard for uppercase
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (text.substring(i, i + 1).equals(" ")) {
+                output.append(" ");
+            } else {
+                output.append(le.encode(text.substring(i, i + 1)));
+            }
+        }
+        return output.toString();
+    }
+
     /**
      * A map that maps the alphabet to positions 0-26
      */
