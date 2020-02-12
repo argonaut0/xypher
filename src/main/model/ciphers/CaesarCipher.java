@@ -15,7 +15,7 @@ public class CaesarCipher extends Cipher {
      * @param shift The number of letters down the alphabet to substitute with.
      */
     public CaesarCipher(int shift) {
-        super("CaesarCipher");
+        super("CaesarCipher" + shift);
         this.letterShift = shift;
     }
 
