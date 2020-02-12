@@ -10,7 +10,7 @@ import java.util.HashMap;
  */
 public abstract class Cipher {
     /**
-     * A map that maps the alphabet to positions 0-26
+     * A map that maps the alphabet to positions 0-26.
      */
     public static final HashMap<String, Integer> ALPHA_MAP = new HashMap<String, Integer>() {
         {
@@ -76,7 +76,7 @@ public abstract class Cipher {
     }
 
     /**
-     * REQUIRES: Text should be unencoded
+     * REQUIRES: Text should be unencoded.
      * EFFECTS: Returns a copy of the input text, transformed.
      *
      * @param text The input text to be transformed.

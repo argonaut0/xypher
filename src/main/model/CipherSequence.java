@@ -32,16 +32,16 @@ public class CipherSequence {
 
     /**
      * MODIFIES: this
-     * EFFECTS: Adds a cipher to the end of the sequence
+     * EFFECTS: Adds a cipher to the end of the sequence.
      */
     public void pushCipher(Cipher cipher) {
         internalList.addLast(cipher);
     }
 
     /**
-     * REQUIRES: Index within list size
+     * REQUIRES: Index within list size.
      * MODIFIES: this
-     * EFFECTS: Inserts a cipher at given index of the sequence
+     * EFFECTS: Inserts a cipher at given index of the sequence.
      *
      * @param cipher The cipher to insert
      * @param index The index at which to insert
@@ -51,9 +51,9 @@ public class CipherSequence {
     }
 
     /**
-     * REQUIRES: Index within list size
+     * REQUIRES: Index within list size.
      * MODIFIES: this
-     * EFFECTS: Removes the cipher at the given index
+     * EFFECTS: Removes the cipher at the given index.
      * @param index The index of cipher of which to remove
      */
     public void removeCipher(int index) {
@@ -75,8 +75,8 @@ public class CipherSequence {
     }
 
     /**
-     * REQUIRES: text has been encoded by this a CipherSequence with equal internal lists
-     * EFFECTS: Decodes the text with the inverse of seriesEncode
+     * REQUIRES: text has been encoded by this a CipherSequence with equal internal lists.
+     * EFFECTS: Decodes the text with the inverse of seriesEncode.
      * @param text The text to be decoded
      * @return The decoded text
      */

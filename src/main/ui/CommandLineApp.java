@@ -29,7 +29,7 @@ public class CommandLineApp {
 
     /**
      * MODIFIES: this
-     * EFFECTS: Sets up fields and runs app
+     * EFFECTS: Sets up fields and runs app.
      */
     public CommandLineApp() {
         sequences = new ArrayList<>();
@@ -41,21 +41,21 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
+     * REQUIRES: Legal console input.
      * MODIFIES: this
-     * EFFECTS: Runs a application loop
+     * EFFECTS: Runs a application loop.
      */
     private void runApp() {
         running = true;
         while (running) {
             printMenu();
             String input = scanner.nextLine().toLowerCase();
-            processInput(input);
+            processMainInput(input);
         }
     }
 
     /**
-     * EFFECTS: Prints the main menu
+     * EFFECTS: Prints the main menu.
      */
     private void printMenu() {
         System.out.println(MENU_DIVIDER);
@@ -70,10 +70,10 @@ public class CommandLineApp {
 
     /**
      * MODIFIES: this
-     * EFFECTS: Processes a given 1-char string input
-     * @param input the input to process
+     * EFFECTS: Processes a given 1-char string input for the main menu.
+     * @param input The input to process.
      */
-    private void processInput(String input) {
+    private void processMainInput(String input) {
         switch (input) {
             case "m":
                 manage();
@@ -97,8 +97,8 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
-     * EFFECTS: Processes input to manage the sequences
+     * REQUIRES: Legal console input.
+     * EFFECTS: Processes input to manage the sequences.
      */
     private void manage() {
         System.out.println("Choose an action:");
@@ -122,9 +122,9 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
+     * REQUIRES: Legal console input.
      * MODIFIES: this
-     * EFFECTS: Adds a cipher to the working ciphers list
+     * EFFECTS: Adds a cipher to the working ciphers list.
      */
     private void configure() {
         System.out.println("Choose a Cipher to add:");
@@ -150,8 +150,8 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
-     * EFFECTS: Encodes some text with a chosen cipher
+     * REQUIRES: Legal console input.
+     * EFFECTS: Encodes some text with a chosen cipher.
      */
     private void encode() {
         Cipher cipher = chooseCipher();
@@ -160,8 +160,8 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
-     * EFFECTS: Decodes some text with a chosen cipher
+     * REQUIRES: Legal console input.
+     * EFFECTS: Decodes some text with a chosen cipher.
      */
     private void decode() {
         Cipher cipher = chooseCipher();
@@ -170,9 +170,9 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
-     * EFFECTS: Gets the cipher chosen by user
-     * @return The cipher from the working list chosen by user
+     * REQUIRES: Legal console input.
+     * EFFECTS: Gets the cipher chosen by user.
+     * @return The cipher from the working list chosen by user.
      */
     private Cipher chooseCipher() {
         System.out.println("Choose a cipher: ");
@@ -181,8 +181,8 @@ public class CommandLineApp {
     }
 
     /**
-     * EFFECTS: Pretty-prints a given Arraylist of elements with indices
-     * @param list A list to be printed
+     * EFFECTS: Pretty-prints a given Arraylist of elements with indices.
+     * @param list A list to be printed.
      */
     private void printList(List list) {
         for (int i = 0; i < list.size(); i++) {
@@ -192,7 +192,7 @@ public class CommandLineApp {
 
     /**
      * MODIFIES: this
-     * EFFECTS: Creates a new sequence
+     * EFFECTS: Creates a new sequence.
      */
     private void newSequence() {
         sequences.add(new CipherSequence());
@@ -200,7 +200,7 @@ public class CommandLineApp {
     }
 
     /**
-     * EFFECTS: Prints out menus for modifying a sequence
+     * EFFECTS: Prints out menus for modifying a sequence.
      */
     private void modifySequence() {
         CipherSequence sequence = chooseSequence();
@@ -214,7 +214,7 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
+     * REQUIRES: Legal console input.
      * MODIFIES: sequence
      * EFFECTS: Processes user input and modifies a sequence.
      * @param sequence The sequence to be modified.
@@ -242,9 +242,9 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
+     * REQUIRES: Legal console input.
      * MODIFIES: sequence
-     * EFFECTS: Adds a cipher to a sequence
+     * EFFECTS: Adds a cipher to a sequence.
      * @param sequence The sequence to be added to.
      */
     private void addToSequence(CipherSequence sequence) {
@@ -273,9 +273,9 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
+     * REQUIRES: Legal console input.
      * MODIFIES: sequence
-     * EFFECTS: Removes a cipher from the sequence
+     * EFFECTS: Removes a cipher from the sequence.
      * @param sequence The sequence to be operated on.
      */
     private void removeFromSequence(CipherSequence sequence) {
@@ -285,9 +285,9 @@ public class CommandLineApp {
     }
 
     /**
-     * REQUIRES: Legal console input
-     * EFFECTS: Gets the sequence chosen by user
-     * @return The sequence chosen by user
+     * REQUIRES: Legal console input.
+     * EFFECTS: Gets the sequence chosen by user.
+     * @return The sequence chosen by user.
      */
     private CipherSequence chooseSequence() {
         System.out.println("Choose a sequence:");

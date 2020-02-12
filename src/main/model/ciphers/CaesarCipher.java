@@ -90,7 +90,7 @@ public class CaesarCipher extends Cipher {
 
     /**
      * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter shifted by letterShift amount
+     * EFFECTS: Returns the corresponding letter shifted by letterShift amount.
      *
      * @param letter The letter to be encoded
      * @return The output letter
@@ -102,7 +102,7 @@ public class CaesarCipher extends Cipher {
 
     /**
      * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter unshifted by letterShift amount
+     * EFFECTS: Returns the corresponding letter unshifted by letterShift amount.
      *
      * @param letter The letter to be decoded
      * @return The output letter
