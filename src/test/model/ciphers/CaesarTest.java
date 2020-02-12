@@ -29,7 +29,14 @@ public class CaesarTest {
         assertEquals(2, caesarCipher1.shiftPosition(1, caesarCipher1.getShift()));
         assertEquals(7, caesarCipher6.shiftPosition(1, caesarCipher6.getShift()));
         assertEquals(1, caesarCipher26.shiftPosition(1, caesarCipher26.getShift()));
-        assertEquals(26, caesarCipher1.shiftPosition(1, -1));
+        assertEquals(5 + 7, caesarCipher1.shiftPosition(5, 7 + 26 + 26 + 26 + 26));
+    }
+
+    @Test
+    void unshiftPositionTest() {
+        assertEquals(25, caesarCipher1.unshiftPosition(0, 1));
+        assertEquals(10, caesarCipher1.unshiftPosition(15, 5));
+        assertEquals(4, caesarCipher1.unshiftPosition(10, 6 + 26 + 26 + 26 + 26));
     }
 
     @Test
