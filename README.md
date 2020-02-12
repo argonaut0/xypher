@@ -42,3 +42,7 @@ I want to be able to:
  - https://www.ascii-code.com/
  - https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way
  - https://www.geeksforgeeks.org/reflection-in-java/
+ - https://stackoverflow.com/questions/1098117/can-one-do-a-for-each-loop-in-java-in-reverse-order
+ 
+ ## Libraries
+ - https://github.com/google/guava/
