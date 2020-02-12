@@ -71,7 +71,7 @@ public abstract class Cipher {
      *
      * @param name The name of the {@link Cipher}
      */
-    public Cipher(String name) {
+    protected Cipher(String name) {
         cipherName = name;
     }
 
