@@ -23,6 +23,13 @@ public class CipherSequence {
     }
 
     /**
+     * @return The number of elements in the sequence.
+     */
+    public int getSize() {
+        return internalList.size();
+    }
+
+    /**
      * MODIFIES: this
      * EFFECTS: Adds a cipher to the end of the sequence
      */
