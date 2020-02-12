@@ -2,7 +2,7 @@ package model.ciphers;
 
 /**
  * Represents an implementation of the Atbash Cipher, a substitution cipher that replaces every letter of position *n*
- * in the alphabet (starting from 1) with the letter of position *27 - n*
+ * in the alphabet (starting from 0) with the letter of position *26 - n*
  *
  * This transformation is invertible.
  *
@@ -16,7 +16,7 @@ public class AtbashCipher extends Cipher {
      * Represents the sum of any two opposing letter positions.
      * Ex. A + Z, B + Y, C + X
      */
-    private static final int LETTER_SUM = 1 + 26;
+    private static final int LETTER_SUM = 0 + 25;
     /**
      * The ASCII code for a space.
      * @deprecated No longer using ascii
