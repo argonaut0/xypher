@@ -1,5 +1,6 @@
 package model;
 
+import com.google.common.collect.Lists;
 import model.ciphers.Cipher;
 
 import java.util.LinkedList;
@@ -34,7 +35,7 @@ public class CipherSequence {
      * EFFECTS: Adds a cipher to the end of the sequence
      */
     public void pushCipher(Cipher cipher) {
-        //todo
+        internalList.addLast(cipher);
     }
 
     /**
@@ -46,7 +47,7 @@ public class CipherSequence {
      * @param index The index at which to insert
      */
     public void addCipher(Cipher cipher, int index) {
-        //todo
+        internalList.add(index, cipher);
     }
 
     /**
@@ -56,7 +57,7 @@ public class CipherSequence {
      * @param index The index of cipher of which to remove
      */
     public void removeCipher(int index) {
-        //todo
+        internalList.remove(index);
     }
 
     /**
@@ -66,7 +67,11 @@ public class CipherSequence {
      * @return The encoded text
      */
     public String seriesEncode(String text) {
-        return null; //todo
+        String output = text;
+        for (Cipher cipher : internalList) {
+            output = cipher.encode(output);
+        }
+        return output;
     }
 
     /**
@@ -76,6 +81,10 @@ public class CipherSequence {
      * @return The decoded text
      */
     public String seriesDecode(String text) {
-        return null; //todo
+        String output = text;
+        for (Cipher cipher : Lists.reverse(internalList)) {
+            output = cipher.decode(output);
+        }
+        return output;
     }
 }

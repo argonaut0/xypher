@@ -45,7 +45,7 @@ public class CipherSequenceTest {
         sequence.pushCipher(CAESAR1);
         sequence.pushCipher(CAESAR5);
         sequence.pushCipher(ROT13);
-        assertEquals(5, sequence.getSize());
+        assertEquals(4, sequence.getSize());
     }
 
     @Test
@@ -88,7 +88,7 @@ public class CipherSequenceTest {
 
     @Test
     void seriesEncodeTest() {
-        String testString = "This is a test attack";
+        String testString = "THIS IS A TEST ATTACK";
         String refString =
                 ROT13.encode(
                         CAESAR5.encode(
@@ -103,7 +103,7 @@ public class CipherSequenceTest {
 
     @Test
     void seriesDecodeTest() {
-        String testString = "This is a test defence";
+        String testString = "THIS IS A TEST DEFENCE";
         String refString =
                 ATBASH.decode(
                         CAESAR1.decode(
@@ -114,5 +114,6 @@ public class CipherSequenceTest {
         sequence.pushCipher(CAESAR5);
         sequence.pushCipher(ROT13);
         assertEquals(refString, sequence.seriesDecode(testString));
+        assertEquals(testString, sequence.seriesDecode(sequence.seriesEncode(testString)));
     }
 }
