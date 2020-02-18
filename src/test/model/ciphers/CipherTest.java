@@ -3,7 +3,6 @@ package model.ciphers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CipherTest {
@@ -21,6 +20,16 @@ public class CipherTest {
             public String decode(String text) {
                 return null;
             }
+
+            @Override
+            protected String encodeLetter(String letter) {
+                return letter;
+            }
+
+            @Override
+            protected String decodeLetter(String letter) {
+                return letter;
+            }
         };
     }
 
@@ -37,18 +46,5 @@ public class CipherTest {
     @Test
     void nameTest() {
         assertEquals("TestCipher", cipher.toString());
-    }
-
-    @Test
-    void toAsciiTest() {
-        assertArrayEquals(new int[]{65, 90, 66, 71, 69}, Cipher.toAscii("AZBGE"));
-        assertArrayEquals(new int[]{97, 98, 99, 61, 49, 50, 51}, Cipher.toAscii("abc=123"));
-    }
-
-    @Test
-    void fromAsciiTest() {
-        int[] testCodes = {66, 90, 65, 71, 90};
-        assertEquals("BZAGZ", Cipher.fromAscii(testCodes));
-        assertEquals("9e?", Cipher.fromAscii(new int[]{57, 101, 63}));
     }
 }
