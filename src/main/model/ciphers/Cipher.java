@@ -8,6 +8,8 @@ import java.util.HashMap;
  * Represents an abstract elementary {@link Cipher} that performs transformations on text.
  * Ciphers are mutable..sigh.
  *
+ * To create a new type of cipher, Override the constructor and Implement encodeLetter() and decodeLetter()
+ *
  * @author Jason Hsu
  */
 public abstract class Cipher {
