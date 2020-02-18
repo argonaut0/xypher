@@ -3,7 +3,6 @@ package model.ciphers;
 import com.google.common.collect.HashBiMap;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Represents an abstract elementary {@link Cipher} that performs transformations on text.
