@@ -14,15 +14,6 @@ public class CipherTest {
     @BeforeEach
     void runBefore() {
         cipher = new Cipher("TestCipher") {
-            @Override
-            public String encode(String text) {
-                return null;
-            }
-
-            @Override
-            public String decode(String text) {
-                return null;
-            }
 
             @Override
             protected String encodeLetter(String letter) {
@@ -41,9 +32,9 @@ public class CipherTest {
         assertEquals(0, Cipher.ALPHA_MAP.get("A"));
         assertEquals(25, Cipher.ALPHA_MAP.get("Z"));
         assertEquals(3, Cipher.ALPHA_MAP.get("D"));
-        assertEquals("A", Cipher.POS_MAP.get(0));
-        assertEquals("Z", Cipher.POS_MAP.get(25));
-        assertEquals("D", Cipher.POS_MAP.get(3));
+        assertEquals("A", Cipher.ALPHA_MAP.inverse().get(0));
+        assertEquals("Z", Cipher.ALPHA_MAP.inverse().get(25));
+        assertEquals("D", Cipher.ALPHA_MAP.inverse().get(3));
     }
 
     @Test
