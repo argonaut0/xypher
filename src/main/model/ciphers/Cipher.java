@@ -11,12 +11,20 @@ import java.util.HashMap;
 public abstract class Cipher {
 
     /**
-     * todo
+     * Represents a Single Abstract Method that transforms a alphabetic string of length 1 to another.
      */
     protected interface LetterTransformer {
         String transform(String inputLetter);
     }
 
+    /**
+     * REQUIRES: Alphabetic text, and valid SAM
+     * EFFECTS: Returns a new transformed version of some text.
+     *
+     * @param text The text to be transformed
+     * @param le The functional method
+     * @return The transformed text
+     */
     protected String transformString(String text, LetterTransformer le) {
         text = text.toUpperCase(); // temporary guard for uppercase
         StringBuilder output = new StringBuilder();
@@ -88,8 +96,22 @@ public abstract class Cipher {
         return transformString(text, this::decodeLetter);
     }
 
+    /**
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the encoded version of the letter
+     *
+     * @param letter The letter to encode
+     * @return The encoded letter
+     */
     protected abstract String encodeLetter(String letter);
 
+    /**
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the unencoded version of the letter
+     *
+     * @param letter The letter to decode
+     * @return The decoded letter
+     */
     protected abstract String decodeLetter(String letter);
 
     /**

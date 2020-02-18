@@ -18,16 +18,33 @@ public class AtbashCipher extends Cipher {
      */
     private static final int LETTER_SUM = 0 + 25;
 
+    /**
+     * EFFECTS: Creates a new Atbash Cipher with name AtbashCipher
+     */
     public AtbashCipher() {
         super("AtbashCipher");
     }
 
+    /**
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the encoded version of the letter
+     *
+     * @param letter The letter to encode
+     * @return The encoded letter
+     */
     @Override
     protected String encodeLetter(String letter) {
         return Cipher.POS_MAP.get(
                 LETTER_SUM - Cipher.ALPHA_MAP.get(letter));
     }
 
+    /**
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the unencoded version of the letter
+     *
+     * @param letter The letter to decode
+     * @return The decoded letter
+     */
     @Override
     protected String decodeLetter(String letter) {
         return encodeLetter(letter);

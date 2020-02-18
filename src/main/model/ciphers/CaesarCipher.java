@@ -11,7 +11,7 @@ public class CaesarCipher extends Cipher {
     private int letterShift;
 
     /**
-     * Constructs a new CaesarCipher with a letter shift amount.
+     * EFFECTS: Constructs a new CaesarCipher with a letter shift amount.
      * @param shift The number of letters down the alphabet to substitute with.
      */
     public CaesarCipher(int shift) {
@@ -19,6 +19,11 @@ public class CaesarCipher extends Cipher {
         this.letterShift = shift;
     }
 
+    /**
+     * EFFECTS: Constructs a new CaesarCipher with a letter shift amount and name.
+     * @param shift The number of letters down the alphabet to substitute with.
+     * @param name The name of the Cipher.
+     */
     public CaesarCipher(int shift, String name) {
         super(name);
         this.letterShift = shift;
@@ -49,11 +54,11 @@ public class CaesarCipher extends Cipher {
     }
 
     /**
-     * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter shifted by letterShift amount
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the encoded version of the letter
      *
-     * @param letter The letter to be encoded
-     * @return The output letter
+     * @param letter The letter to encode
+     * @return The encoded letter
      */
     @Override
     protected String encodeLetter(String letter) {
@@ -62,11 +67,11 @@ public class CaesarCipher extends Cipher {
     }
 
     /**
-     * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter unshifted by letterShift amount
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the unencoded version of the letter
      *
-     * @param letter The letter to be decoded
-     * @return The output letter
+     * @param letter The letter to decode
+     * @return The decoded letter
      */
     @Override
     protected String decodeLetter(String letter) {
