@@ -73,7 +73,9 @@ public abstract class Cipher {
      * @param text The input text to be transformed.
      * @return The output text.
      */
-    public abstract String encode(String text);
+    public String encode(String text) {
+        return transformString(text, this::encodeLetter);
+    }
 
     /**
      * REQUIRES: Text should be previously encoded by this cipher at the same configuration.
@@ -82,7 +84,13 @@ public abstract class Cipher {
      * @param text The input text to be inversely transformed.
      * @return The output text.
      */
-    public abstract String decode(String text);
+    public String decode(String text) {
+        return transformString(text, this::decodeLetter);
+    }
+
+    protected abstract String encodeLetter(String letter);
+
+    protected abstract String decodeLetter(String letter);
 
     /**
      * @return The name of this {@link Cipher}.
