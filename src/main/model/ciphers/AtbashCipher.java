@@ -17,47 +17,36 @@ public class AtbashCipher extends Cipher {
      * Ex. A + Z, B + Y, C + X
      */
     private static final int LETTER_SUM = 0 + 25;
-    /**
-     * The ASCII code for a space.
-     * @deprecated No longer using ascii
-     */
-    private static final int SPACE_CODE = 32;
 
+    /**
+     * EFFECTS: Creates a new Atbash Cipher with name AtbashCipher
+     */
     public AtbashCipher() {
         super("AtbashCipher");
     }
 
     /**
-     * REQUIRES: Text must be comprised of [A-Z] and spaces, and unencoded.
-     * EFFECTS: Returns a copy of the input text, transformed.
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the encoded version of the letter
      *
-     * @param text The input text to be transformed.
-     * @return The output text.
+     * @param letter The letter to encode
+     * @return The encoded letter
      */
     @Override
-    public String encode(String text) {
-        String letters = text.toUpperCase(); // temporary guard for uppercase
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < letters.length(); i++) {
-            if (letters.substring(i, i + 1).equals(" ")) {
-                result.append(" ");
-            } else {
-                result.append(Cipher.POS_MAP.get(
-                        LETTER_SUM - Cipher.ALPHA_MAP.get(letters.substring(i, i + 1))));
-            }
-        }
-        return result.toString();
+    protected String encodeLetter(String letter) {
+        return Cipher.POS_MAP.get(
+                LETTER_SUM - Cipher.ALPHA_MAP.get(letter));
     }
 
     /**
-     * REQUIRES: Text must be comprised of [A-Z] and spaces, and encoded.
-     * EFFECTS: Returns a copy of the input text, inversely transformed.
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the unencoded version of the letter
      *
-     * @param text The input text to be inversely transformed.
-     * @return The output text.
+     * @param letter The letter to decode
+     * @return The decoded letter
      */
     @Override
-    public String decode(String text) {
-        return encode(text);
+    protected String decodeLetter(String letter) {
+        return encodeLetter(letter);
     }
 }

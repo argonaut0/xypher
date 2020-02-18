@@ -9,6 +9,35 @@ import java.util.HashMap;
  * @author Jason Hsu
  */
 public abstract class Cipher {
+
+    /**
+     * Represents a Single Abstract Method that transforms a alphabetic string of length 1 to another.
+     */
+    protected interface LetterTransformer {
+        String transform(String inputLetter);
+    }
+
+    /**
+     * REQUIRES: Alphabetic text, and valid SAM
+     * EFFECTS: Returns a new transformed version of some text.
+     *
+     * @param text The text to be transformed
+     * @param le The functional method
+     * @return The transformed text
+     */
+    protected String transformString(String text, LetterTransformer le) {
+        text = text.toUpperCase(); // temporary guard for uppercase
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (text.substring(i, i + 1).equals(" ")) {
+                output.append(" ");
+            } else {
+                output.append(le.transform(text.substring(i, i + 1)));
+            }
+        }
+        return output.toString();
+    }
+
     /**
      * A map that maps the alphabet to positions 0-26.
      */
@@ -36,36 +65,6 @@ public abstract class Cipher {
     private String cipherName;
 
     /**
-     * REQUIRES: A text string comprised of characters defined in ASCII.
-     * EFFECTS: Returns the ASCII representation of a string.
-     * @param text The string to be converted.
-     * @return An array representing ASCII codes.
-     * @deprecated Use ALPHA_MAP instead
-     */
-    public static int[] toAscii(String text) {
-        int[] ascii = new int[text.length()];
-        for (int i = 0; i < text.length(); i++) {
-            ascii[i] = text.charAt(i);
-        }
-        return ascii;
-    }
-
-    /**
-     * REQUIRES: An int array comprised of ASCII codes.
-     * EFFECTS: Returns the string represented by ASCII codes.
-     * @param ascii ASCII codes to be converted.
-     * @return A string converted from ASCII.
-     * @deprecated Use POS_MAP instead
-     */
-    public static String fromAscii(int[] ascii) {
-        String text = "";
-        for (int c : ascii) {
-            text = text + (char)c;
-        }
-        return text;
-    }
-
-    /**
      * MODIFIES: this
      * EFFECTS: Initializes the constant name of the {@link Cipher}
      *
@@ -82,7 +81,9 @@ public abstract class Cipher {
      * @param text The input text to be transformed.
      * @return The output text.
      */
-    public abstract String encode(String text);
+    public String encode(String text) {
+        return transformString(text, this::encodeLetter);
+    }
 
     /**
      * REQUIRES: Text should be previously encoded by this cipher at the same configuration.
@@ -91,7 +92,27 @@ public abstract class Cipher {
      * @param text The input text to be inversely transformed.
      * @return The output text.
      */
-    public abstract String decode(String text);
+    public String decode(String text) {
+        return transformString(text, this::decodeLetter);
+    }
+
+    /**
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the encoded version of the letter
+     *
+     * @param letter The letter to encode
+     * @return The encoded letter
+     */
+    protected abstract String encodeLetter(String letter);
+
+    /**
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the unencoded version of the letter
+     *
+     * @param letter The letter to decode
+     * @return The decoded letter
+     */
+    protected abstract String decodeLetter(String letter);
 
     /**
      * @return The name of this {@link Cipher}.

@@ -11,7 +11,7 @@ public class CaesarCipher extends Cipher {
     private int letterShift;
 
     /**
-     * Constructs a new CaesarCipher with a letter shift amount.
+     * EFFECTS: Constructs a new CaesarCipher with a letter shift amount.
      * @param shift The number of letters down the alphabet to substitute with.
      */
     public CaesarCipher(int shift) {
@@ -19,49 +19,14 @@ public class CaesarCipher extends Cipher {
         this.letterShift = shift;
     }
 
+    /**
+     * EFFECTS: Constructs a new CaesarCipher with a letter shift amount and name.
+     * @param shift The number of letters down the alphabet to substitute with.
+     * @param name The name of the Cipher.
+     */
     public CaesarCipher(int shift, String name) {
         super(name);
         this.letterShift = shift;
-    }
-
-    /**
-     * REQUIRES: Text should be unencoded.
-     * EFFECTS: Returns a copy of the input text, transformed.
-     *
-     * @param text The input text to be transformed.
-     * @return The output text.
-     */
-    @Override
-    public String encode(String text) {
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (text.substring(i, i + 1).equals(" ")) {
-                output.append(" ");
-            } else {
-                output.append(encodeLetter(text.substring(i, i + 1)));
-            }
-        }
-        return output.toString();
-    }
-
-    /**
-     * REQUIRES: Text should be previously encoded by this cipher at the same configuration.
-     * EFFECTS: Returns a copy of the input text, inversely transformed.
-     *
-     * @param text The input text to be inversely transformed.
-     * @return The output text.
-     */
-    @Override
-    public String decode(String text) {
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (text.substring(i, i + 1).equals(" ")) {
-                output.append(" ");
-            } else {
-                output.append(decodeLetter(text.substring(i, i + 1)));
-            }
-        }
-        return output.toString();
     }
 
     /**
@@ -89,24 +54,26 @@ public class CaesarCipher extends Cipher {
     }
 
     /**
-     * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter shifted by letterShift amount.
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the encoded version of the letter
      *
-     * @param letter The letter to be encoded
-     * @return The output letter
+     * @param letter The letter to encode
+     * @return The encoded letter
      */
+    @Override
     protected String encodeLetter(String letter) {
         int newPosition = shiftPosition(ALPHA_MAP.get(letter.toUpperCase()), letterShift);
         return POS_MAP.get(newPosition);
     }
 
     /**
-     * REQUIRES: letter [A-Z] | [a-z]
-     * EFFECTS: Returns the corresponding letter unshifted by letterShift amount.
+     * REQUIRES: An alphabetic string of length 1, uppercase.
+     * EFFECTS: Returns the unencoded version of the letter
      *
-     * @param letter The letter to be decoded
-     * @return The output letter
+     * @param letter The letter to decode
+     * @return The decoded letter
      */
+    @Override
     protected String decodeLetter(String letter) {
         int newPosition = unshiftPosition(ALPHA_MAP.get(letter.toUpperCase()), letterShift);
         return POS_MAP.get(newPosition);
