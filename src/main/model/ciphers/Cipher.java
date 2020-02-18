@@ -13,18 +13,18 @@ public abstract class Cipher {
     /**
      * todo
      */
-    protected interface LetterEncoder {
-        String encode(String inputLetter);
+    protected interface LetterTransformer {
+        String transform(String inputLetter);
     }
 
-    protected String encodeString(String text, LetterEncoder le) {
+    protected String transformString(String text, LetterTransformer le) {
         text = text.toUpperCase(); // temporary guard for uppercase
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             if (text.substring(i, i + 1).equals(" ")) {
                 output.append(" ");
             } else {
-                output.append(le.encode(text.substring(i, i + 1)));
+                output.append(le.transform(text.substring(i, i + 1)));
             }
         }
         return output.toString();
@@ -55,36 +55,6 @@ public abstract class Cipher {
      * The name of the Cipher
      */
     private String cipherName;
-
-    /**
-     * REQUIRES: A text string comprised of characters defined in ASCII.
-     * EFFECTS: Returns the ASCII representation of a string.
-     * @param text The string to be converted.
-     * @return An array representing ASCII codes.
-     * @deprecated Use ALPHA_MAP instead
-     */
-    public static int[] toAscii(String text) {
-        int[] ascii = new int[text.length()];
-        for (int i = 0; i < text.length(); i++) {
-            ascii[i] = text.charAt(i);
-        }
-        return ascii;
-    }
-
-    /**
-     * REQUIRES: An int array comprised of ASCII codes.
-     * EFFECTS: Returns the string represented by ASCII codes.
-     * @param ascii ASCII codes to be converted.
-     * @return A string converted from ASCII.
-     * @deprecated Use POS_MAP instead
-     */
-    public static String fromAscii(int[] ascii) {
-        String text = "";
-        for (int c : ascii) {
-            text = text + (char)c;
-        }
-        return text;
-    }
 
     /**
      * MODIFIES: this
