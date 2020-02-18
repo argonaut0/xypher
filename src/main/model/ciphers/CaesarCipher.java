@@ -63,7 +63,7 @@ public class CaesarCipher extends Cipher {
     @Override
     protected String encodeLetter(String letter) {
         int newPosition = shiftPosition(ALPHA_MAP.get(letter.toUpperCase()), letterShift);
-        return POS_MAP.get(newPosition);
+        return ALPHA_MAP.inverse().get(newPosition);
     }
 
     /**
@@ -76,7 +76,7 @@ public class CaesarCipher extends Cipher {
     @Override
     protected String decodeLetter(String letter) {
         int newPosition = unshiftPosition(ALPHA_MAP.get(letter.toUpperCase()), letterShift);
-        return POS_MAP.get(newPosition);
+        return ALPHA_MAP.inverse().get(newPosition);
     }
 
     public int getShift() {

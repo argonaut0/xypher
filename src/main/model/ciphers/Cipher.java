@@ -1,6 +1,9 @@
 package model.ciphers;
 
+import com.google.common.collect.HashBiMap;
+
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents an abstract elementary {@link Cipher} that performs transformations on text.
@@ -39,25 +42,16 @@ public abstract class Cipher {
     }
 
     /**
-     * A map that maps the alphabet to positions 0-26.
+     * A map that maps the alphabet to positions 0-25.
      */
-    public static final HashMap<String, Integer> ALPHA_MAP = new HashMap<String, Integer>() {
+    public static final HashBiMap<String, Integer> ALPHA_MAP = HashBiMap.create(new HashMap<String, Integer>() {
         {
             String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             for (int i = 0; i < 26; i++) {
                 put(upper.substring(i, i + 1), i);
             }
         }
-    };
-
-    public static final HashMap<Integer, String> POS_MAP = new HashMap<Integer, String>() {
-        {
-            String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            for (int i = 0; i < 26; i++) {
-                put(i, upper.substring(i, i + 1));
-            }
-        }
-    };
+    });
 
     /**
      * The name of the Cipher

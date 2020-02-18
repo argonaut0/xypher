@@ -34,7 +34,7 @@ public class AtbashCipher extends Cipher {
      */
     @Override
     protected String encodeLetter(String letter) {
-        return Cipher.POS_MAP.get(
+        return Cipher.ALPHA_MAP.inverse().get(
                 LETTER_SUM - Cipher.ALPHA_MAP.get(letter));
     }
 
