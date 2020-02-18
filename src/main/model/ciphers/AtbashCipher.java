@@ -19,6 +19,7 @@ public class AtbashCipher extends Cipher {
     private static final int LETTER_SUM = 0 + 25;
 
     /**
+     * MODIFIES: this
      * EFFECTS: Creates a new Atbash Cipher with name AtbashCipher
      */
     public AtbashCipher() {
