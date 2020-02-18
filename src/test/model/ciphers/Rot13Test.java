@@ -3,6 +3,9 @@ package model.ciphers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for {@link Rot13Cipher}
+ */
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Rot13Test {

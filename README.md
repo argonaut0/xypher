@@ -10,12 +10,18 @@ This tool could be used by anyone wishing to play around with or learn about sim
 
 Features:
  - Converts to and from common pre-computer ciphers.
- - Command-line use.
+ - Command-line interface
 
 This topic is of interest to me because of the role that modern ciphers (encryption) play in
 digital security today, and because of the mathematics that are involved.
 
-
+## Version 1.0.0-alpha features:
+- Command line interface
+- Atbash Cipher
+- Caesar Cipher
+- ROT13 Cipher
+- Add Ciphers to a sequence
+- Encode and decode alphabetic text
 
 
 ## User Stories
@@ -26,7 +32,7 @@ I want to be able to:
 - Select from a list of cipher algorithms.
 - Configure settings for each algorithm (if available).
 - Use cipher algorithms to convert back and forth from legible text.
-- Add algorithms to a list to be applied sequentially.
+- Add cipher algorithms to a sequence to be applied to text sequentially.
 
 
 
@@ -42,3 +48,7 @@ I want to be able to:
  - https://www.ascii-code.com/
  - https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way
  - https://www.geeksforgeeks.org/reflection-in-java/
+ - https://stackoverflow.com/questions/1098117/can-one-do-a-for-each-loop-in-java-in-reverse-order
+ 
+ ## Libraries
+ - https://github.com/google/guava/

@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for {@link AtbashCipher}
+ */
 public class AtbashTest {
     private AtbashCipher atbashCipher;
 
