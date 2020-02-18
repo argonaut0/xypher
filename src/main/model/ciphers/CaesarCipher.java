@@ -25,30 +25,6 @@ public class CaesarCipher extends Cipher {
     }
 
     /**
-     * REQUIRES: Text should be unencoded.
-     * EFFECTS: Returns a copy of the input text, transformed.
-     *
-     * @param text The input text to be transformed.
-     * @return The output text.
-     */
-    @Override
-    public String encode(String text) {
-        return transformString(text, this::encodeLetter);
-    }
-
-    /**
-     * REQUIRES: Text should be previously encoded by this cipher at the same configuration.
-     * EFFECTS: Returns a copy of the input text, inversely transformed.
-     *
-     * @param text The input text to be inversely transformed.
-     * @return The output text.
-     */
-    @Override
-    public String decode(String text) {
-        return transformString(text, this::decodeLetter);
-    }
-
-    /**
      * REQUIRES: letterPosition [0-25], shift (x | xeZ)
      * EFFECTS: Returns the position of the shifted letter.
      *
@@ -79,6 +55,7 @@ public class CaesarCipher extends Cipher {
      * @param letter The letter to be encoded
      * @return The output letter
      */
+    @Override
     protected String encodeLetter(String letter) {
         int newPosition = shiftPosition(ALPHA_MAP.get(letter.toUpperCase()), letterShift);
         return POS_MAP.get(newPosition);
@@ -91,6 +68,7 @@ public class CaesarCipher extends Cipher {
      * @param letter The letter to be decoded
      * @return The output letter
      */
+    @Override
     protected String decodeLetter(String letter) {
         int newPosition = unshiftPosition(ALPHA_MAP.get(letter.toUpperCase()), letterShift);
         return POS_MAP.get(newPosition);
