@@ -52,3 +52,4 @@ I want to be able to:
  
  ## Libraries
  - https://github.com/google/guava/
+ - https://code.google.com/archive/p/cliche/
