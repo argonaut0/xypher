@@ -27,13 +27,17 @@ digital security today, and because of the mathematics that are involved.
 ## User Stories
 
 ### Phase 1:
-
 I want to be able to:
 - Select from a list of cipher algorithms.
 - Configure settings for each algorithm (if available).
 - Use cipher algorithms to convert back and forth from legible text.
 - Add cipher algorithms to a sequence to be applied to text sequentially.
 
+### Phase 2:
+I want to be able to:
+- Save my configuration of ciphers to a file.
+- Save my configuration of sequences to a file.
+- Quickly load both from a file.
 
 
 
