@@ -56,3 +56,4 @@ I want to be able to:
  
  ## Libraries
  - https://github.com/google/guava/
+ - https://github.com/google/gson
