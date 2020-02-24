@@ -14,6 +14,7 @@ public class ClicheCLI {
         ROT13,
         CAESAR
     }
+
     private ArrayList<CipherSequence> sequences;
     private ArrayList<Cipher> ciphers;
 
