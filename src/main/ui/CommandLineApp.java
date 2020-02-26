@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 /**
  * Represents an instance of a command line implementation of the app.
+ * @deprecated probably doesnt work
  * @author Jason Hsu
  */
 public class CommandLineApp {
