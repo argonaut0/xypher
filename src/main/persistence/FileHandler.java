@@ -5,6 +5,7 @@ import model.CipherSequence;
 import model.ciphers.Cipher;
 
 import java.io.*;
+import java.lang.reflect.Type;
 
 /**
  * Represents the single instance file handler
@@ -52,8 +53,8 @@ public class FileHandler {
      * @return The cipher loaded from file.
      * @throws IOException Problem loading cipher.
      */
-    public Cipher loadCipher(String path) throws IOException {
-        return gson.fromJson(readFile(path), Cipher.class);
+    public Cipher loadCipher(String path) throws IOException, ClassNotFoundException {
+        return gson.fromJson(readFile(path + FILE_EXT), (Type) Class.forName("model.ciphers." + path));
     }
 
     /**
@@ -64,7 +65,7 @@ public class FileHandler {
      * @throws IOException Problem loading sequence.
      */
     public CipherSequence loadSequence(String path) throws IOException {
-        return gson.fromJson(readFile(path), CipherSequence.class);
+        return gson.fromJson(readFile(path + FILE_EXT), CipherSequence.class);
     }
 
     /**
@@ -114,11 +115,13 @@ public class FileHandler {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         StringBuilder result = new StringBuilder();
         String line;
-        do {
+        while (true) {
             line = bufferedReader.readLine();
+            if (line == null) {
+                break;
+            }
             result.append(line);
-        } while (line != null);
-
+        }
         return result.toString();
     }
 }
