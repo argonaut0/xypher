@@ -1,70 +1,107 @@
 package model;
 
-import model.CipherSequence;
 import model.ciphers.Cipher;
+import persistence.FileHandler;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
- * Represents an instance of the App
+ * Represents an instance of the App container, provides an API
  */
 public class XypherApp {
 
     private static String ALL_CIPHERS;
     private HashMap<String, Encoder> encoders;
+    private FileHandler fileHandler;
 
     public XypherApp() {
         encoders = new HashMap<>();
-        //todo: populate default ciphers
+        fileHandler = FileHandler.getInstance();
     }
 
-    public void addCipher() {
-        //todo
+    public Cipher getCipher(String name) throws IllegalArgumentException {
+        if (encoders.get(name) instanceof Cipher) {
+            return (Cipher) encoders.get(name);
+        } else {
+            throw new IllegalArgumentException("Encoder is not a Cipher");
+        }
     }
 
-    public void deleteCipher() {
-        //todo
+    public void saveCipher(String name) throws IllegalArgumentException, IOException {
+        fileHandler.saveCipher(getCipher(name));
     }
 
-    public void saveCipher() {
-        //todo
+    public void loadCipher(String name) throws IOException {
+        encoders.put(name, fileHandler.loadCipher(name));
     }
 
-    public void loadCipher() {
-        //todo
+    public CipherSequence getSequence(String name) throws IllegalArgumentException {
+        if (encoders.get(name) instanceof CipherSequence) {
+            return (CipherSequence) encoders.get(name);
+        } else {
+            throw new IllegalArgumentException("Encoder is not a Sequence");
+        }
     }
 
-    public void addSequence() {
-        //todo
+    public void saveSequence(String name) throws IllegalArgumentException, IOException {
+        fileHandler.saveSequence(getSequence(name));
     }
 
-    public void deleteSequence() {
-        //todo
+    public void loadSequence(String name) throws IOException {
+        encoders.put(name, fileHandler.loadSequence(name));
     }
 
-    public void saveSequence() {
-        //todo
+    public void addEncoder(Encoder encoder) throws IllegalArgumentException {
+        if (encoders.get(encoder.toString()) != null) {
+            throw new IllegalArgumentException("Encoder already exists");
+        } else {
+            encoders.put(encoder.toString(), encoder);
+        }
     }
 
-    public void loadSequence() {
-        //todo
+    public void deleteEncoder(String name) {
+        encoders.remove(name);
     }
 
-    public void getEncoders() {
-        //todo
+    /**
+     * EFFECTS: Returns a linked list of all the encoder names.
+     */
+    public LinkedList<String> getEncoders() {
+        return new LinkedList<>(encoders.keySet());
     }
 
-    public String encode(String text, String encoderName) {
-        return null; //todo
+    public String encode(String text, String encoderName) throws IllegalArgumentException {
+        if (encoders.get(encoderName) != null) {
+            return encoders.get(encoderName).encode(text);
+        } else {
+            throw new IllegalArgumentException("Encoder does not exist");
+        }
     }
 
-    public String decode(String text, String encoderName) {
-        return null; //todo
+    public String decode(String text, String encoderName) throws IllegalArgumentException {
+        if (encoders.get(encoderName) != null) {
+            return encoders.get(encoderName).decode(text);
+        } else {
+            throw new IllegalArgumentException("Encoder does not exist");
+        }
     }
 
     @Override
     public String toString() {
-        return null; //todo
+        StringBuilder sb = new StringBuilder();
+        sb.append("Encoders: \n");
+        encoders.forEach(
+                (String key, Encoder encoder) -> {
+                    String type = "Sequence";
+                    if (encoder instanceof Cipher) {
+                        type = "Cipher";
+                    }
+                    sb.append(key + " : " + type + "\n");
+                }
+        );
+
+        return sb.toString();
     }
 }
