@@ -195,7 +195,8 @@ public class CommandLineApp {
      * EFFECTS: Creates a new sequence.
      */
     private void newSequence() {
-        sequences.add(new CipherSequence());
+        System.out.println("Enter a sequence name:");
+        sequences.add(new CipherSequence(scanner.nextLine()));
         System.out.println("Added sequence: " + sequences.get(sequences.size() - 1));
     }
 

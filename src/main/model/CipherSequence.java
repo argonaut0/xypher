@@ -9,9 +9,17 @@ import java.util.LinkedList;
  * Represents a sequence of Ciphers. Stores a sequence of Ciphers that can be applied to text.
  */
 public class CipherSequence {
+    /**
+     * The name of the sequence
+     */
+    private String name;
+    /**
+     * The internal list of the sequence
+     */
     private LinkedList<Cipher> internalList;
 
-    public CipherSequence() {
+    public CipherSequence(String name) {
+        this.name = name;
         internalList = new LinkedList<>();
     }
 
@@ -86,5 +94,13 @@ public class CipherSequence {
             output = cipher.decode(output);
         }
         return output;
+    }
+
+    /**
+     * @return The name of the sequence.
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }
