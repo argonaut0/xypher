@@ -11,7 +11,6 @@ import java.util.LinkedList;
  * Represents an instance of the App container, provides an API
  */
 public class XypherApp {
-    //todo SAVE FOLDER CONSTANT
     private HashMap<String, Encoder> encoders;
     private FileHandler fileHandler;
 

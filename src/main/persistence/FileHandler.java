@@ -13,6 +13,7 @@ import java.lang.reflect.Type;
  * @author Jason Hsu
  */
 public class FileHandler {
+    public static final String DATA_FOLDER = "./data/";
     /**
      * The file extension to write
      */
@@ -54,7 +55,7 @@ public class FileHandler {
      * @throws IOException Problem loading cipher.
      */
     public Cipher loadCipher(String path) throws IOException, ClassNotFoundException {
-        return gson.fromJson(readFile(path + FILE_EXT), (Type) Class.forName("model.ciphers." + path));
+        return gson.fromJson(readFile(path), (Type) Class.forName("model.ciphers." + path));
     }
 
     /**
@@ -65,7 +66,7 @@ public class FileHandler {
      * @throws IOException Problem loading sequence.
      */
     public CipherSequence loadSequence(String path) throws IOException {
-        return gson.fromJson(readFile(path + FILE_EXT), CipherSequence.class);
+        return gson.fromJson(readFile(path), CipherSequence.class);
     }
 
     /**
@@ -76,7 +77,7 @@ public class FileHandler {
      * @throws IOException Problem saving cipher
      */
     public void saveCipher(Cipher cipher) throws IOException {
-        writeFile(cipher.toString() + FILE_EXT, gson.toJson(cipher));
+        writeFile(cipher.toString(), gson.toJson(cipher));
     }
 
     /**
@@ -87,7 +88,7 @@ public class FileHandler {
      * @throws IOException Problem saving cipher
      */
     public void saveSequence(CipherSequence sequence) throws IOException {
-        writeFile(sequence.toString() + FILE_EXT, gson.toJson(sequence));
+        writeFile(sequence.toString(), gson.toJson(sequence));
     }
 
     /**
@@ -99,7 +100,7 @@ public class FileHandler {
      * @throws IOException Problem writing to file.
      */
     private void writeFile(String fileName, String text) throws IOException {
-        FileWriter fileWriter = new FileWriter(fileName);
+        FileWriter fileWriter = new FileWriter(DATA_FOLDER + fileName + FILE_EXT);
         fileWriter.write(text);
         fileWriter.close();
     }
@@ -112,7 +113,7 @@ public class FileHandler {
      * @throws IOException Problem reading from file.
      */
     private String readFile(String fileName) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(DATA_FOLDER + fileName + FILE_EXT));
         StringBuilder result = new StringBuilder();
         String line;
         while (true) {
