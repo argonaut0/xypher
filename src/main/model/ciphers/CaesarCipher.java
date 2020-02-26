@@ -24,7 +24,7 @@ public class CaesarCipher extends Cipher {
      * @param shift The number of letters down the alphabet to substitute with.
      * @param name The name of the Cipher.
      */
-    public CaesarCipher(int shift, String name) {
+    protected CaesarCipher(int shift, String name) {
         super(name);
         this.letterShift = shift;
     }
