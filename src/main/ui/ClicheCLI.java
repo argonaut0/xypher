@@ -14,7 +14,6 @@ import java.util.LinkedList;
 public class ClicheCLI {
 
     private XypherApp app;
-    //todo sequences
 
     /**
      * MODIFIES: this
@@ -25,7 +24,9 @@ public class ClicheCLI {
     }
 
     /**
-     *
+     * REQUIRES: a cipher type followed by arguments if any
+     * MODIFIES: this
+     * EFFECTS: Adds a cipher to the worklist
      * @param args At least 1 argument
      */
     @Command
@@ -52,6 +53,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: an alphabetic name
+     * mODIFIES: this
+     * EFFECTS: adds a new sequence with a name
+     * @param name the name
+     */
     @Command
     public void addSequence(String name) {
         try {
@@ -61,11 +68,19 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * EFFECTS: Lists the encoders currently in worklist
+     */
     @Command
     public void listEncoders() {
         System.out.println(app.toString());
     }
 
+    /**
+     * REQUIRES: a sequence name
+     * EFFECTS: lists the encoders contained in the sequence
+     * @param sequenceName sequence name
+     */
     @Command
     public void listEncoders(String sequenceName) {
         try {
@@ -83,6 +98,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: a valid encoder name, alphabetic text
+     * EFFECTS: encodes and prints out text
+     * @param encoder encoder to use
+     * @param text text to encode
+     */
     @Command
     public void encode(String encoder, String text) {
         try {
@@ -92,6 +113,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: a valid encoder name, alphabetic text
+     * EFFECTS: decodes and prints out text
+     * @param encoder encoder to use
+     * @param text text to decode
+     */
     @Command
     public void decode(String encoder, String text) {
         try {
@@ -101,6 +128,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: a valid cipher name
+     * MODIFIES: filesystem
+     * EFFECTS: saves a cipher to file
+     * @param name cipher name
+     */
     @Command
     public void saveCipher(String name) {
         try {
@@ -110,6 +143,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: a valid file name
+     * MODIFIES: this
+     * EFFECTS: reads and adds a cipher from file
+     * @param name cipher name
+     */
     @Command
     public void loadCipher(String name) {
         try {
@@ -119,6 +158,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: a valid file name
+     * MODIFIES: filesystem
+     * EFFECTS: saves a sequence to file
+     * @param name sequence name
+     */
     @Command
     public void saveSequence(String name) {
         try {
@@ -128,6 +173,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: a valid file name
+     * MODIFIES: filesystem
+     * EFFECTS: reads and adds a sequence from file
+     * @param name sequence name
+     */
     @Command
     public void loadSequence(String name) {
         try {
@@ -137,6 +188,12 @@ public class ClicheCLI {
         }
     }
 
+    /**
+     * REQUIRES: valid encoder name
+     * MODIFIES: this
+     * EFFECTS: removes an encoder from app
+     * @param name encoder name
+     */
     @Command
     public void deleteEncoder(String name) {
         try {
@@ -147,9 +204,10 @@ public class ClicheCLI {
     }
 
     /**
-     *
+     * REQUIRES: valid arguments
+     * MODIFIES: this
+     * EFFECTS: adds/removes encoders from sequences
      * @param args sequenceName, add/remove/push, (ciphername), (index)
-     *
      */
     @Command
     public void modifySequence(String... args) {
