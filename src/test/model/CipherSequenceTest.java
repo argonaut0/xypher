@@ -101,7 +101,7 @@ public class CipherSequenceTest {
         sequence.pushCipher(CAESAR1);
         sequence.pushCipher(CAESAR5);
         sequence.pushCipher(ROT13);
-        assertEquals(refString, sequence.seriesEncode(testString));
+        assertEquals(refString, sequence.encode(testString));
     }
 
     @Test
@@ -116,8 +116,8 @@ public class CipherSequenceTest {
         sequence.pushCipher(CAESAR1);
         sequence.pushCipher(CAESAR5);
         sequence.pushCipher(ROT13);
-        assertEquals(refString, sequence.seriesDecode(testString));
-        assertEquals(testString, sequence.seriesDecode(sequence.seriesEncode(testString)));
+        assertEquals(refString, sequence.decode(testString));
+        assertEquals(testString, sequence.decode(sequence.encode(testString)));
     }
 
     @Test

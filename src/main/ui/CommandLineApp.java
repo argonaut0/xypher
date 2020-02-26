@@ -233,11 +233,11 @@ public class CommandLineApp {
                 break;
             case "e":
                 System.out.println(TRANSFORM_TEXT_PROMPT);
-                System.out.println(sequence.seriesEncode(scanner.nextLine()));
+                System.out.println(sequence.encode(scanner.nextLine()));
                 break;
             case "d":
                 System.out.println(TRANSFORM_TEXT_PROMPT);
-                System.out.println(sequence.seriesDecode(scanner.nextLine()));
+                System.out.println(sequence.decode(scanner.nextLine()));
                 break;
         }
     }

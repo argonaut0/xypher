@@ -4,6 +4,7 @@ import model.CipherSequence;
 import model.ciphers.Cipher;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Represents an instance of the App
@@ -11,12 +12,10 @@ import java.util.ArrayList;
 public class XypherApp {
 
     private static String ALL_CIPHERS;
-    private ArrayList<CipherSequence> sequences;
-    private ArrayList<Cipher> ciphers;
+    private HashMap<String, Encoder> encoders;
 
     public XypherApp() {
-        sequences = new ArrayList<>();
-        ciphers = new ArrayList<>();
+        encoders = new HashMap<>();
         //todo: populate default ciphers
     }
 
@@ -52,21 +51,20 @@ public class XypherApp {
         //todo
     }
 
-    public String encode(String text, String cipher) {
+    public void getEncoders() {
+        //todo
+    }
+
+    public String encode(String text, String encoderName) {
         return null; //todo
     }
 
-    public String decode(String text, Cipher cipher) {
+    public String decode(String text, String encoderName) {
         return null; //todo
     }
 
-    public String encode(String text, CipherSequence sequence) {
+    @Override
+    public String toString() {
         return null; //todo
     }
-
-    public String decode(String text, CipherSequence sequence) {
-        return null; //todo
-    }
-
-
 }

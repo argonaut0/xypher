@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FileHandlerTest {
     FileHandler fileHandler;
+    private static final String TEST_FOLDER = "./data/test/";
 
     @BeforeEach
     void runBefore() {
