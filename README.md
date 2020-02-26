@@ -53,6 +53,8 @@ I want to be able to:
  - https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way
  - https://www.geeksforgeeks.org/reflection-in-java/
  - https://stackoverflow.com/questions/1098117/can-one-do-a-for-each-loop-in-java-in-reverse-order
+ - https://docs.oracle.com/javase/tutorial/reflect/class/classNew.html
+ - https://www.geeksforgeeks.org/variable-arguments-varargs-in-java/
  
  ## Libraries
  - https://github.com/google/guava/
