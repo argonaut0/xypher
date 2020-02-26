@@ -5,9 +5,11 @@ import model.CipherSequence;
 import model.XypherApp;
 import model.ciphers.AtbashCipher;
 import model.ciphers.CaesarCipher;
+import model.ciphers.Cipher;
 import model.ciphers.Rot13Cipher;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class ClicheCLI {
 
@@ -60,8 +62,25 @@ public class ClicheCLI {
     }
 
     @Command
-    public String listEncoders() {
-        return app.toString();
+    public void listEncoders() {
+        System.out.println(app.toString());
+    }
+
+    @Command
+    public void listEncoders(String sequenceName) {
+        try {
+            CipherSequence sequence = app.getSequence(sequenceName);
+            LinkedList<Cipher> ciphers = sequence.getCipherList();
+            StringBuilder sb = new StringBuilder();
+            sb.append(sequence.toString() + " : Sequence\n");
+            ciphers.forEach(
+                    (Cipher cipher) -> {
+                        sb.append("- " + cipher.toString() + " : Cipher\n");
+                    });
+            System.out.println(sb.toString());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Command
@@ -123,6 +142,33 @@ public class ClicheCLI {
         try {
             app.deleteEncoder(name);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param args sequenceName, add/remove/push, (ciphername), (index)
+     *
+     */
+    @Command
+    public void modifySequence(String... args) {
+        try {
+            CipherSequence sequence = app.getSequence(args[0]);
+            switch (args[1]) {
+                case "add":
+                    sequence.addCipher(app.getCipher(args[2]), Integer.parseInt(args[3]));
+                    break;
+                case "remove":
+                    sequence.removeCipher(Integer.parseInt(args[2]));
+                    break;
+                case "push":
+                    sequence.pushCipher(app.getCipher(args[2]));
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid arguments");
+            }
+        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
         }
     }
