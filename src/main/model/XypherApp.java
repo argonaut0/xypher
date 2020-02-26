@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import model.CipherSequence;
 import model.ciphers.Cipher;
