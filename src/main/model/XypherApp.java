@@ -11,7 +11,7 @@ import java.util.LinkedList;
  * Represents an instance of the App container, provides an API
  */
 public class XypherApp {
-
+    //todo SAVE FOLDER CONSTANT
     private static String ALL_CIPHERS;
     private HashMap<String, Encoder> encoders;
     private FileHandler fileHandler;
@@ -34,7 +34,11 @@ public class XypherApp {
     }
 
     public void loadCipher(String name) throws IOException {
-        encoders.put(name, fileHandler.loadCipher(name));
+        try {
+            encoders.put(name, fileHandler.loadCipher(name));
+        } catch (ClassNotFoundException e) {
+            throw new IllegalArgumentException("Invalid File");
+        }
     }
 
     public CipherSequence getSequence(String name) throws IllegalArgumentException {
@@ -61,8 +65,12 @@ public class XypherApp {
         }
     }
 
-    public void deleteEncoder(String name) {
-        encoders.remove(name);
+    public void deleteEncoder(String name) throws IllegalArgumentException {
+        if (encoders.get(name) != null) {
+            throw new IllegalArgumentException("Encoder does not exist");
+        } else {
+            encoders.remove(name);
+        }
     }
 
     /**
@@ -72,7 +80,7 @@ public class XypherApp {
         return new LinkedList<>(encoders.keySet());
     }
 
-    public String encode(String text, String encoderName) throws IllegalArgumentException {
+    public String encode(String encoderName, String text) throws IllegalArgumentException {
         if (encoders.get(encoderName) != null) {
             return encoders.get(encoderName).encode(text);
         } else {
@@ -80,7 +88,7 @@ public class XypherApp {
         }
     }
 
-    public String decode(String text, String encoderName) throws IllegalArgumentException {
+    public String decode(String encoderName, String text) throws IllegalArgumentException {
         if (encoders.get(encoderName) != null) {
             return encoders.get(encoderName).decode(text);
         } else {
