@@ -1,5 +1,7 @@
-package model;
+package ui;
 
+import model.CipherSequence;
+import model.Encoder;
 import model.ciphers.Cipher;
 import persistence.FileHandler;
 

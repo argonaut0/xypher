@@ -2,7 +2,6 @@ package ui;
 
 import asg.cliche.Command;
 import model.CipherSequence;
-import model.XypherApp;
 import model.ciphers.AtbashCipher;
 import model.ciphers.CaesarCipher;
 import model.ciphers.Cipher;
@@ -11,6 +10,9 @@ import model.ciphers.Rot13Cipher;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Represents a ClicheCLI user interface
+ */
 public class ClicheCLI {
 
     private XypherApp app;
