@@ -55,6 +55,7 @@ I want to be able to:
  - https://stackoverflow.com/questions/1098117/can-one-do-a-for-each-loop-in-java-in-reverse-order
  - https://docs.oracle.com/javase/tutorial/reflect/class/classNew.html
  - https://www.geeksforgeeks.org/variable-arguments-varargs-in-java/
+ - https://stackoverflow.com/questions/3629596/deserializing-an-abstract-class-in-gson
  
  ## Libraries
  - https://github.com/google/guava/

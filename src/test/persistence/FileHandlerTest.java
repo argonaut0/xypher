@@ -1,8 +1,9 @@
 package persistence;
 
+import model.CipherSequence;
+import model.ciphers.AtbashCipher;
 import model.ciphers.CaesarCipher;
-import model.ciphers.Cipher;
-import org.junit.jupiter.api.Assertions;
+import model.ciphers.Rot13Cipher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,7 @@ public class FileHandlerTest {
     FileHandler fileHandler;
     private static final String LOAD_TEST_CIPHER = "CaesarCipher5";
     private static final CaesarCipher SAVE_TEST_CIPHER = new CaesarCipher(15);
+    private static final String LOAD_TEST_SEQ = "TestSequence";
 
     @BeforeEach
     void runBefore() {
@@ -42,9 +44,9 @@ public class FileHandlerTest {
 
     @Test
     void saveCipherTest() {
+        File testFile = new File("./data/" + SAVE_TEST_CIPHER.toString() + FileHandler.FILE_EXT);
+        testFile.deleteOnExit();
         try {
-            File testFile = new File(SAVE_TEST_CIPHER.toString(), FileHandler.FILE_EXT);
-            testFile.deleteOnExit();
             fileHandler.saveCipher(SAVE_TEST_CIPHER);
             CaesarCipher readCipher = (CaesarCipher) fileHandler.loadCipher(SAVE_TEST_CIPHER.toString());
             assertEquals(SAVE_TEST_CIPHER.getShift(), readCipher.getShift());
@@ -55,15 +57,33 @@ public class FileHandlerTest {
         }
     }
 
-
-
     @Test
     void loadSequenceTest() {
-        //todo
+        try {
+            CipherSequence sequence = fileHandler.loadSequence(LOAD_TEST_SEQ);
+            assertEquals(LOAD_TEST_SEQ, sequence.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail("Exception thrown");
+        }
     }
 
     @Test
     void saveSequenceTest() {
-        //todo
+        File testFile = new File("./data/TestSaveSequence.json");
+        testFile.deleteOnExit();
+
+        CipherSequence sequence = new CipherSequence("TestSaveSequence");
+        sequence.pushCipher(new AtbashCipher());
+        sequence.pushCipher(new Rot13Cipher());
+        try {
+            fileHandler.saveSequence(sequence);
+            CipherSequence readSeq = fileHandler.loadSequence("TestSaveSequence");
+            assertEquals(sequence.toString(), readSeq.toString());
+            assertEquals(sequence.encode("hello"), readSeq.encode("hello"));
+        } catch (IOException | IllegalArgumentException e) {
+            e.printStackTrace();
+            fail("Exception thrown");
+        }
     }
 }

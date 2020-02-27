@@ -1,6 +1,7 @@
 package persistence;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.CipherSequence;
 import model.ciphers.Cipher;
 
@@ -30,7 +31,10 @@ public class FileHandler {
      * EFFECTS: Initializes gson
      */
     private FileHandler() {
-        gson = new Gson();
+        gson = new GsonBuilder()
+        .registerTypeAdapter(Cipher.class,
+                new SerializationHandler())
+                .create();
     }
 
     /**
@@ -55,7 +59,11 @@ public class FileHandler {
      * @throws IOException Problem loading cipher.
      */
     public Cipher loadCipher(String path) throws IOException, ClassNotFoundException {
-        return gson.fromJson(readFile(path), (Type) Class.forName("model.ciphers." + path));
+        if (path.indexOf("Caesar") != -1) {
+            return gson.fromJson(readFile(path), (Type) Class.forName("model.ciphers.CaesarCipher"));
+        } else {
+            return gson.fromJson(readFile(path), (Type) Class.forName("model.ciphers." + path));
+        }
     }
 
     /**
