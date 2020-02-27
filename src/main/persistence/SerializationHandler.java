@@ -12,6 +12,9 @@ public class SerializationHandler implements JsonDeserializer<Object>, JsonSeria
 
     private static final String CLASS_TYPE_META_KEY = "CLASS_META_KEY";
 
+    /**
+     * EFFECTS: Overrides default deserializer to take into account object type tag
+     */
     @Override
     public Object deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext)
             throws JsonParseException {
@@ -25,6 +28,9 @@ public class SerializationHandler implements JsonDeserializer<Object>, JsonSeria
         }
     }
 
+    /**
+     * EFFECTS: Overrides default serializer to take into account object type tag
+     */
     @Override
     public JsonElement serialize(Object o, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonElement jsonEle = jsonSerializationContext.serialize(o, o.getClass());

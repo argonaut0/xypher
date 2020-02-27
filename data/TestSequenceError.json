@@ -1,0 +1,1 @@
+{"name":"TestSequence","internalList":[{"letterShift":5,"cipherName":"CaesarCipher5","CLASS_META_KEY":"model.ciphers.NotARealClass"},{"cipherName":"AtbashCipher","CLASS_META_KEY":"model.ciphers.AtbashCipher"},{"letterShift":13,"cipherName":"Rot13Cipher","CLASS_META_KEY":"model.ciphers.Rot13Cipher"}]}
