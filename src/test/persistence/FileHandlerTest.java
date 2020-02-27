@@ -3,6 +3,7 @@ package persistence;
 import model.CipherSequence;
 import model.ciphers.AtbashCipher;
 import model.ciphers.CaesarCipher;
+import model.ciphers.Cipher;
 import model.ciphers.Rot13Cipher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,27 @@ public class FileHandlerTest {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             fail("Exception thrown");
+        }
+    }
+
+    @Test
+    void loadNonConfigCipherTest() {
+        try {
+            Cipher cipher = fileHandler.loadCipher("AtbashCipher");
+            assertEquals("AtbashCipher", cipher.toString());
+            assertEquals(AtbashCipher.class, cipher.getClass());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            fail("Exception thrown");
+        }
+    }
+
+    @Test
+    void loadSequenceFailTest() {
+        try {
+            CipherSequence sequence = fileHandler.loadSequence("TestSequenceError");
+            fail("Exception not thrown");
+        } catch (Exception e) {
         }
     }
 
