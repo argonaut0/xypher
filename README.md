@@ -27,13 +27,17 @@ digital security today, and because of the mathematics that are involved.
 ## User Stories
 
 ### Phase 1:
-
 I want to be able to:
 - Select from a list of cipher algorithms.
 - Configure settings for each algorithm (if available).
 - Use cipher algorithms to convert back and forth from legible text.
 - Add cipher algorithms to a sequence to be applied to text sequentially.
 
+### Phase 2:
+I want to be able to:
+- Save my configuration of ciphers to a file.
+- Save my configuration of sequences to a file.
+- Quickly load both from a file.
 
 
 
@@ -49,6 +53,11 @@ I want to be able to:
  - https://stackoverflow.com/questions/6802483/how-to-directly-initialize-a-hashmap-in-a-literal-way
  - https://www.geeksforgeeks.org/reflection-in-java/
  - https://stackoverflow.com/questions/1098117/can-one-do-a-for-each-loop-in-java-in-reverse-order
+ - https://docs.oracle.com/javase/tutorial/reflect/class/classNew.html
+ - https://www.geeksforgeeks.org/variable-arguments-varargs-in-java/
+ - https://stackoverflow.com/questions/3629596/deserializing-an-abstract-class-in-gson
  
  ## Libraries
  - https://github.com/google/guava/
+ - https://github.com/google/gson
+ - https://code.google.com/archive/p/cliche/

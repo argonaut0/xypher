@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 /**
  * Represents an instance of a command line implementation of the app.
+ * @deprecated probably doesnt work
  * @author Jason Hsu
  */
 public class CommandLineApp {
@@ -195,7 +196,8 @@ public class CommandLineApp {
      * EFFECTS: Creates a new sequence.
      */
     private void newSequence() {
-        sequences.add(new CipherSequence());
+        System.out.println("Enter a sequence name:");
+        sequences.add(new CipherSequence(scanner.nextLine()));
         System.out.println("Added sequence: " + sequences.get(sequences.size() - 1));
     }
 
@@ -232,11 +234,11 @@ public class CommandLineApp {
                 break;
             case "e":
                 System.out.println(TRANSFORM_TEXT_PROMPT);
-                System.out.println(sequence.seriesEncode(scanner.nextLine()));
+                System.out.println(sequence.encode(scanner.nextLine()));
                 break;
             case "d":
                 System.out.println(TRANSFORM_TEXT_PROMPT);
-                System.out.println(sequence.seriesDecode(scanner.nextLine()));
+                System.out.println(sequence.decode(scanner.nextLine()));
                 break;
         }
     }

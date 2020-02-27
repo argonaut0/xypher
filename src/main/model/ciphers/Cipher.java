@@ -1,6 +1,7 @@
 package model.ciphers;
 
 import com.google.common.collect.HashBiMap;
+import model.Encoder;
 
 import java.util.HashMap;
 
@@ -12,7 +13,7 @@ import java.util.HashMap;
  *
  * @author Jason Hsu
  */
-public abstract class Cipher {
+public abstract class Cipher implements Encoder {
     /**
      * The name of the Cipher
      */

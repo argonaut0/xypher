@@ -8,10 +8,18 @@ import java.util.LinkedList;
 /**
  * Represents a sequence of Ciphers. Stores a sequence of Ciphers that can be applied to text.
  */
-public class CipherSequence {
+public class CipherSequence implements Encoder {
+    /**
+     * The name of the sequence
+     */
+    private String name;
+    /**
+     * The internal list of the sequence
+     */
     private LinkedList<Cipher> internalList;
 
-    public CipherSequence() {
+    public CipherSequence(String name) {
+        this.name = name;
         internalList = new LinkedList<>();
     }
 
@@ -66,7 +74,7 @@ public class CipherSequence {
      * @param text The text to be encoded
      * @return The encoded text
      */
-    public String seriesEncode(String text) {
+    public String encode(String text) {
         String output = text;
         for (Cipher cipher : internalList) {
             output = cipher.encode(output);
@@ -80,11 +88,19 @@ public class CipherSequence {
      * @param text The text to be decoded
      * @return The decoded text
      */
-    public String seriesDecode(String text) {
+    public String decode(String text) {
         String output = text;
         for (Cipher cipher : Lists.reverse(internalList)) {
             output = cipher.decode(output);
         }
         return output;
+    }
+
+    /**
+     * @return The name of the sequence.
+     */
+    @Override
+    public String toString() {
+        return name;
     }
 }
