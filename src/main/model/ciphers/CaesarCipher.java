@@ -1,5 +1,7 @@
 package model.ciphers;
 
+import com.google.common.math.IntMath;
+
 /**
  * Represents an implementation of the Caesar Cipher.
  *
@@ -38,7 +40,7 @@ public class CaesarCipher extends Cipher {
      * @return The position of the shifted letter
      */
     protected int shiftPosition(int letterPosition, int shift) {
-        return (letterPosition + shift) % 26;
+        return IntMath.mod(letterPosition + shift, 26);
     }
 
     /**
@@ -50,7 +52,7 @@ public class CaesarCipher extends Cipher {
      * @return The position of the initial letter.
      */
     protected int unshiftPosition(int letterPosition, int shift) {
-        return  (letterPosition + (26 - (shift % 26))) % 26;
+        return  IntMath.mod(letterPosition + (26 - IntMath.mod(shift, 26)), 26);
     }
 
     /**
