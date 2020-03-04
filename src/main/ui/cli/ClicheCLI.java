@@ -1,8 +1,9 @@
-package ui;
+package ui.cli;
 
 import asg.cliche.Command;
 import model.CipherSequence;
 import model.ciphers.*;
+import ui.XypherApp;
 
 import java.io.IOException;
 import java.util.LinkedList;

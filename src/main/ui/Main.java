@@ -1,6 +1,7 @@
 package ui;
 
 import asg.cliche.ShellFactory;
+import ui.cli.ClicheCLI;
 
 import java.io.IOException;
 

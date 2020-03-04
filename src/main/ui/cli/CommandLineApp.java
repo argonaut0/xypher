@@ -1,4 +1,4 @@
-package ui;
+package ui.cli;
 
 import model.CipherSequence;
 import model.ciphers.AtbashCipher;
