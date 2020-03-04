@@ -59,10 +59,12 @@ public class FileHandler {
      * @throws IOException Problem loading cipher.
      */
     public Cipher loadCipher(String path) throws IOException, ClassNotFoundException {
-        if (path.indexOf("Caesar") != -1) {
-            return gson.fromJson(readFile(path), (Type) Class.forName("model.ciphers.CaesarCipher"));
+        if (path.indexOf(Cipher.ARG_DELIM) != -1) {
+            return gson.fromJson(readFile(path),
+                    (Type) Class.forName("model.ciphers." + path.substring(0, path.indexOf(Cipher.ARG_DELIM))));
         } else {
-            return gson.fromJson(readFile(path), (Type) Class.forName("model.ciphers." + path));
+            return gson.fromJson(readFile(path),
+                    (Type) Class.forName("model.ciphers." + path));
         }
     }
 

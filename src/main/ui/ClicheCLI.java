@@ -2,10 +2,7 @@ package ui;
 
 import asg.cliche.Command;
 import model.CipherSequence;
-import model.ciphers.AtbashCipher;
-import model.ciphers.CaesarCipher;
-import model.ciphers.Cipher;
-import model.ciphers.Rot13Cipher;
+import model.ciphers.*;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -34,15 +31,19 @@ public class ClicheCLI {
     @Command
     public void addCipher(String... args) {
         try {
+            // too lazy to use reflection here
             switch (args[0]) {
-                case "atbash":
+                case "AtbashCipher":
                     app.addEncoder(new AtbashCipher());
                     break;
-                case "rot13":
+                case "Rot13Cipher":
                     app.addEncoder(new Rot13Cipher());
                     break;
-                case "caesar":
+                case "CaesarCipher":
                     app.addEncoder(new CaesarCipher(Integer.parseInt(args[1])));
+                    break;
+                case "AffineCipher":
+                    app.addEncoder(new AffineCipher(Integer.parseInt(args[1]), Integer.parseInt(args[2])));
                     break;
                 default:
                     System.out.println("Unrecognized Cipher Type");

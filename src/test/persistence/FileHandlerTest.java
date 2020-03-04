@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class FileHandlerTest {
     FileHandler fileHandler;
-    private static final String LOAD_TEST_CIPHER = "CaesarCipher5";
+    private static final String LOAD_TEST_CIPHER = "CaesarCipher-5";
     private static final CaesarCipher SAVE_TEST_CIPHER = new CaesarCipher(15);
     private static final String LOAD_TEST_SEQ = "TestSequence";
 

@@ -31,14 +31,22 @@ public abstract class Cipher implements Encoder {
         }
     });
 
+    public static final String ARG_DELIM = "-";
+
     /**
      * MODIFIES: this
-     * EFFECTS: Initializes the constant name of the {@link Cipher}
+     * EFFECTS: Initializes the constant name of the {@link Cipher} with a '-' for props
      *
      * @param name The name of the {@link Cipher}
      */
-    protected Cipher(String name) {
-        cipherName = name;
+    protected Cipher(String name, String... args) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        for (String arg : args) {
+            sb.append(ARG_DELIM);
+            sb.append(arg);
+        }
+        cipherName = sb.toString();
     }
 
     /**
