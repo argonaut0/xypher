@@ -1,19 +1,20 @@
 package ui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import model.CipherSequence;
 import model.Encoder;
 import model.ciphers.Cipher;
 import persistence.FileHandler;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
  * Represents an instance of the App container, provides an API
  */
 public class XypherApp {
-    private HashMap<String, Encoder> encoders;
+    private ObservableMap<String, Encoder> encoders;
+    private ObservableMap<String, Encoder> readOnlyEncoders;
     private FileHandler fileHandler;
 
     /**
@@ -21,7 +22,8 @@ public class XypherApp {
      * EFFECTS: initializes fields
      */
     public XypherApp() {
-        encoders = new HashMap<>();
+        encoders = FXCollections.observableHashMap();
+        readOnlyEncoders = FXCollections.unmodifiableObservableMap(encoders);
         fileHandler = FileHandler.getInstance();
     }
 
@@ -134,13 +136,6 @@ public class XypherApp {
     }
 
     /**
-     * EFFECTS: Returns a linked list of all the encoder names.
-     */
-    public LinkedList<String> getEncoders() {
-        return new LinkedList<>(encoders.keySet());
-    }
-
-    /**
      * REQUIRES: The name of a valid encoder, alphabetic text
      * EFFECTS: Encodes some text
      * @param encoderName the encoder to use
@@ -183,12 +178,16 @@ public class XypherApp {
         encoders.forEach(
                 (String key, Encoder encoder) -> {
                     if (encoder instanceof Cipher) {
-                        sb.append(encoder.toString() + " : Cipher\n");
+                        sb.append(encoder.toString()).append(" : Cipher\n");
                     } else {
-                        sb.append(encoder.toString() + " : Sequence\n");
+                        sb.append(encoder.toString()).append(" : Sequence\n");
                     }
                 }
         );
         return sb.toString();
+    }
+
+    public ObservableMap<String, Encoder> getEncoders() {
+        return readOnlyEncoders;
     }
 }
