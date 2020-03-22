@@ -22,6 +22,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * Represents a javafx xypher application
+ */
 public class JfxApp extends Application {
     private ObservableMap<String, Encoder> encoders;
     private XypherApp app;
@@ -53,6 +56,9 @@ public class JfxApp extends Application {
     final Button encodeButton = new Button("Encode");
     final Button decodeButton = new Button("Decode");
 
+    /**
+     * Formatted Column region
+     */
     private static class ColumnVBox extends VBox {
         ColumnVBox() {
             this.setSpacing(5);
@@ -60,12 +66,18 @@ public class JfxApp extends Application {
         }
     }
 
+    /**
+     * Space-filling horizontal spacer
+     */
     private static class HSpacer extends Region {
         HSpacer() {
             HBox.setHgrow(this, Priority.ALWAYS);
         }
     }
 
+    /**
+     * Space-filling vertical spacer
+     */
     private static class VSpacer extends Region {
         VSpacer() {
             VBox.setVgrow(this, Priority.ALWAYS);
@@ -80,10 +92,11 @@ public class JfxApp extends Application {
     }
 
     /**
+     * MODIFIES: param stage
      * EFFECTS: Starts the application
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         construct();
         stage.setTitle("Xypher");
 
@@ -101,7 +114,8 @@ public class JfxApp extends Application {
     }
 
     /**
-     * EFFECTS: Initializes things
+     * MODIFIES: this
+     * EFFECTS: Initializes fields
      */
     private void construct() {
         app = new XypherApp();
@@ -121,6 +135,7 @@ public class JfxApp extends Application {
     }
 
     /**
+     * MODIFIES: this
      * EFFECTS: generates the encoder list
      */
     private VBox genEncoderTable() {
@@ -144,6 +159,7 @@ public class JfxApp extends Application {
     }
 
     /**
+     * MODIFIES: this
      * EFFECTS: generates the config pane
      */
     private VBox genConfigPane() {
@@ -172,6 +188,10 @@ public class JfxApp extends Application {
         return box;
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: generates the encoder add/remove/save/load pane
+     */
     private VBox genEncoderTypePane() {
         final VBox box = new ColumnVBox();
 
@@ -202,6 +222,7 @@ public class JfxApp extends Application {
     }
 
     /**
+     * MODIFIES: this
      * EFFECTS: generates the text input pane
      */
     private VBox genInputPane() {
@@ -223,6 +244,7 @@ public class JfxApp extends Application {
     }
 
     /**
+     * MODIFIES: this
      * EFFECTS: generates the text output pane
      */
     private VBox genOutputPane() {
@@ -249,6 +271,10 @@ public class JfxApp extends Application {
         }
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: updates sequenceEncoderBox
+     */
     private void encoderChangeListener(MapChangeListener.Change<? extends String,? extends Encoder> change) {
         if (change.wasRemoved()) {
             sequenceEncodersBox.getItems().remove(change.getKey());
@@ -257,12 +283,20 @@ public class JfxApp extends Application {
         }
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: Sets the active encoder
+     */
     private void selectEncoder(ActionEvent e) {
         activeEncoder = encoders.get(encoderSelectionBox.getSelectionModel().getSelectedItem());
         titleContextText.setText(encoderSelectionBox.getSelectionModel().getSelectedItem());
-        System.out.println("[DEBUG] active encoder changed to " + activeEncoder.toString()); //todo debugprint
+        System.out.println("Active encoder changed to " + activeEncoder.toString()); //todo debugprint
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: toggles visibility of optional text fields based on context
+     */
     private void selectEncoderType(ActionEvent e) {
         clearNewEncoderOptions();
         switch (encoderTypesBox.getSelectionModel().getSelectedItem()) {
@@ -280,6 +314,10 @@ public class JfxApp extends Application {
         }
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: tries to add an encoder to app
+     */
     private void addEncoderUI(ActionEvent e) {
         switch (encoderTypesBox.getSelectionModel().getSelectedItem()) {
             case "Sequence":
@@ -302,10 +340,18 @@ public class JfxApp extends Application {
         }
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: tries to remove an encoder from app
+     */
     private void removeEncoderUI(ActionEvent e) {
         app.deleteEncoder(encoderSelectionBox.getSelectionModel().getSelectedItem());
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: loads an encoder from file
+     */
     private void loadEncoderUI(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Error reading file");
@@ -320,6 +366,10 @@ public class JfxApp extends Application {
         }
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: saves an encoder to file
+     */
     private void saveEncoderUI(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Error writing file");
@@ -334,6 +384,10 @@ public class JfxApp extends Application {
         }
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: adds the active cipher to the chosen sequence
+     */
     private void addEncoderToSeqUI(ActionEvent e) {
         if (activeEncoder.getClass() != CipherSequence.class) {
             app.getSequence(sequenceEncodersBox.getSelectionModel().getSelectedItem())
@@ -342,12 +396,20 @@ public class JfxApp extends Application {
         refreshSequenceContents();
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: removes the cipher at removeIndexField index from sequence
+     */
     private void removeEncoderFromSeqUI(ActionEvent e) {
         app.getSequence(sequenceEncodersBox.getSelectionModel().getSelectedItem())
                 .removeCipher(Integer.parseInt(removeIndexField.getText()));
         refreshSequenceContents();
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: resets visibility of all optional fields
+     */
     private void clearNewEncoderOptions() {
         newSequenceNameField.setVisible(false);
         newAffineCipherAField.setVisible(false);
@@ -355,6 +417,10 @@ public class JfxApp extends Application {
         newCaesarCipherShiftField.setVisible(false);
     }
 
+    /**
+     * MODIFIES: this
+     * EFFECTS: refreshes the display for chosen sequence's contents
+     */
     private void refreshSequenceContents() {
         sequenceContents.getItems().clear();
         for (Cipher c : app.getSequence(sequenceEncodersBox.getSelectionModel().getSelectedItem()).getCipherList()) {
