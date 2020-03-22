@@ -16,6 +16,10 @@ import model.Encoder;
 import model.ciphers.*;
 import ui.XypherApp;
 
+import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Synthesizer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +59,7 @@ public class JfxApp extends Application {
     final TextField outputTextField = new TextField();
     final Button encodeButton = new Button("Encode");
     final Button decodeButton = new Button("Decode");
+    Synthesizer synth;
 
     /**
      * Formatted Column region
@@ -120,6 +125,35 @@ public class JfxApp extends Application {
     private void construct() {
         app = new XypherApp();
         encoders = app.getEncoders();
+        try {
+            synth = MidiSystem.getSynthesizer();
+            synth.open();
+            synth.loadInstrument(synth.getDefaultSoundbank().getInstruments()[0]);
+        } catch (MidiUnavailableException e) {
+            System.out.println("Error getting midi synth");
+        }
+    }
+
+    /**
+     * EFFECTS: plays a happy sound
+     */
+    private void playEncodeSound() {
+        MidiChannel channel = synth.getChannels()[0];
+        try {
+            channel.noteOn(83, 60);
+            Thread.sleep(400);
+            channel.noteOn(83, 60);
+            Thread.sleep(400);
+            channel.noteOn(83, 60);
+            Thread.sleep(150);
+            channel.noteOff(83);
+            channel.noteOn(80, 60);
+            Thread.sleep(150);
+            channel.noteOff(80);
+            channel.noteOn(88,60);
+        } catch (InterruptedException e) {
+            System.out.println("Midi interrupted");
+        }
     }
 
     /**
@@ -230,6 +264,7 @@ public class JfxApp extends Application {
 
         encodeButton.setOnAction((ActionEvent e) -> {
             outputTextField.setText(activeEncoder.encode(inputTextField.getText()));
+            playEncodeSound();
         });
 
         decodeButton.setOnAction((ActionEvent e) -> {
