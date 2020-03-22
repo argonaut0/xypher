@@ -39,6 +39,32 @@ I want to be able to:
 - Save my configuration of sequences to a file.
 - Quickly load both from a file.
 
+### Phase 3:
+I want to be able to:
+- Do the above, with a gui
+- Hear a nice dopamine-inducing sound when encoding text
+
+## Instructions for Grader
+- Run JfxMain
+- Choose AtbashCipher from Available encoders
+- Click add
+- Choose Sequence from Available encoders
+- Fill in a fun name
+- Click add
+- Choose the sequence you just added to configure
+- Choose AtbashCipher as the active encoder
+- (first event)
+- Click Add Active Cipher to Sequence!
+- (second event)
+- Type index 0 and click Remove Cipher from Sequence to remove!
+- Add the AtbashCipher again and select it
+- type some text into the input
+- (Sound event)
+- Click encode! and enjoy the nice pleasant sfx while your message is encoded
+- (save event)
+- Select any Encoder to be active and press save to save it if it isnt already.
+- (load event)
+- Type "TestSequence" into the Name to Load... and click load. check that it is loaded
 
 
 ## References
