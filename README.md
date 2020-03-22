@@ -51,21 +51,24 @@ I want to be able to:
 - Choose Sequence from Available encoders
 - Fill in a fun name
 - Click add
-- Choose the sequence you just added to configure
+- Choose the sequence you just added to CONFIGURE
 - Choose AtbashCipher as the active encoder
 - (first event)
 - Click Add Active Cipher to Sequence!
 - (second event)
 - Type index 0 and click Remove Cipher from Sequence to remove!
-- Add the AtbashCipher again and select it
+- Select AtbashCipher as the Active Encoder
 - type some text into the input
 - (Sound event)
 - Click encode! and enjoy the nice pleasant sfx while your message is encoded
 - (save event)
 - Select any Encoder to be active and press save to save it if it isnt already.
+- (try Rot13, atbash is already saved)
 - (load event)
 - Type "TestSequence" into the Name to Load... and click load. check that it is loaded
 
+Notes: Invalid inputs will result in no operations performed. Exceptions are handled by
+the javafx library, so the overall application is robust.
 
 ## References
  (To be formatted)

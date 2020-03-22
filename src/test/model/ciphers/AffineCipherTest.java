@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class AffineCipherTest {
     private AffineCipher affineCipher;
@@ -32,5 +33,15 @@ public class AffineCipherTest {
         assertEquals("DEFEND THE EAST WALL OF THE CASTLE",
                 affineCipher.decode("VAFATV XPA AGSX MGJJ YF XPA QGSXJA"));
         assertEquals("HELLO WORLD", affineCipher.decode("PAJJY MYNJV"));
+    }
+
+    @Test
+    void robustTest() {
+        try {
+            new AffineCipher(2, 123);
+            fail();
+        } catch (IllegalArgumentException e) {
+
+        }
     }
 }
