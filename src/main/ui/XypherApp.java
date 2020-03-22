@@ -128,7 +128,7 @@ public class XypherApp {
      * @throws IllegalArgumentException Encoder not in worklist
      */
     public void deleteEncoder(String name) throws IllegalArgumentException {
-        if (encoders.get(name) != null) {
+        if (encoders.get(name) == null) {
             throw new IllegalArgumentException("Encoder does not exist");
         } else {
             encoders.remove(name);
