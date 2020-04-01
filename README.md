@@ -70,6 +70,20 @@ I want to be able to:
 Notes: Invalid inputs will result in no operations performed. Exceptions are handled by
 the javafx library, so the overall application is robust.
 
+
+###Phase 4: Task 2:
+Type Hierarchy:
+- Encoder interface represents anything that can be used to encode text.
+- Encoder specifies two methods, String -> String encode() and String -> String decode().
+- Cipher implements Encoder, is an abstract representation of a Cipher.
+- Cipher's implementation of encode/decode calls abstract encodeLetter() and abstract decodeLetter() on each letter in the
+string
+- Each class that extends Cipher (ciphers package) simply overrides encodeLetter() and decodeLetter() in different ways
+to transform text. eg CaesarCipher shifts the letter by a certain number
+- The other subclass of Encoder is CipherSequence
+- CipherSequence stores a sequence of Ciphers and its implementation of encode() and decode() recursively calls encode()
+and decode() in all the Ciphers stored, encoding/decoding the text sequentially.
+
 ## References
  (To be formatted)
  - https://www.tutorialspoint.com/java/java_documentation.htm
