@@ -81,15 +81,6 @@ public class JfxApp extends Application {
     }
 
     /**
-     * Space-filling vertical spacer
-     */
-    private static class VSpacer extends Region {
-        VSpacer() {
-            VBox.setVgrow(this, Priority.ALWAYS);
-        }
-    }
-
-    /**
      * (Slightly) Hacky entry point, called in psvm
      */
     public static void run(String[] args) {

@@ -7,7 +7,7 @@ import ui.gui.JfxApp;
 import java.io.IOException;
 
 /**
- * Main class - Represents the entry point to the application
+ * Entry point for CLI app
  * @author Jason Hsu
  */
 public class Main {

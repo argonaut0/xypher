@@ -5,7 +5,7 @@ import ui.gui.JfxApp;
 import java.io.IOException;
 
 /**
- * Temporary main class for testing jfx
+ * Entry point for GUI app
  * @author Jason Hsu
  */
 public class JfxMain {
