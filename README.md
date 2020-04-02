@@ -84,6 +84,19 @@ to transform text. eg CaesarCipher shifts the letter by a certain number
 - CipherSequence stores a sequence of Ciphers and its implementation of encode() and decode() recursively calls encode()
 and decode() in all the Ciphers stored, encoding/decoding the text sequentially.
 
+###Phase 4: Task 3:
+- Reduced code duplication by merging saveCipher() and saveSequence() actions into general saveEncoder() action.
+- Reduced code duplication by merging loadCipher() and loadSequence() actions into general loadEncoder() action.
+- Cleaned up some typos and extraneous code.
+
+- Also, a lot of refactoring was done before this phase/ in between phases:
+- Each Cipher used to have it's own encode()/decode() methods, but they all used a lot of iterating through strings.
+- ^^ This caused a lot of coupling and code duplication
+- This was abstracted away into the Cipher abstract class as a fold function and now all each cipher subclass provides
+is encodeLetter() and decodeLetter(), which are passed into a transform() method (that iterates through strings)
+as a lambda by encode()/decode().
+- Relevant commits are: 9fcec1b + f09c997, 21afaf7, 87c4b86, fd3517f, 5157764
+
 ## References
  (To be formatted)
  - https://www.tutorialspoint.com/java/java_documentation.htm

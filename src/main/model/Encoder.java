@@ -7,10 +7,10 @@ public interface Encoder {
     /**
      * EFFECTS: encodes text
      */
-    public String encode(String text);
+    String encode(String text);
 
     /**
      * EFFECTS: decodes text
      */
-    public String decode(String text);
+    String decode(String text);
 }

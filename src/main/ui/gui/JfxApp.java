@@ -382,11 +382,7 @@ public class JfxApp extends Application {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Error reading file");
         try {
-            if (loadPath.getText().contains("Cipher")) {
-                app.loadCipher(loadPath.getText());
-            } else {
-                app.loadSequence(loadPath.getText());
-            }
+            app.loadEncoder(loadPath.getText());
         } catch (IOException ie) {
             alert.show();
         }
@@ -400,11 +396,7 @@ public class JfxApp extends Application {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Error writing file");
         try {
-            if (activeEncoder.getClass() == CipherSequence.class) {
-                app.saveSequence(activeEncoder.toString());
-            } else {
-                app.saveCipher(activeEncoder.toString());
-            }
+            app.saveEncoder(activeEncoder.toString());
         } catch (IOException ie) {
             alert.show();
         }

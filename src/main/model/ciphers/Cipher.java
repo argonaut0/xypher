@@ -105,7 +105,7 @@ public abstract class Cipher implements Encoder {
      * @return The transformed text
      */
     protected String transformString(String text, LetterTransformer le) {
-        text = text.toUpperCase(); // temporary guard for uppercase
+        text = text.toUpperCase(); //guard for uppercase
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             if (text.substring(i, i + 1).equals(" ")) {

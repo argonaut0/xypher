@@ -16,7 +16,7 @@ public class AtbashCipher extends Cipher {
      * Represents the sum of any two opposing letter positions.
      * Ex. A + Z, B + Y, C + X
      */
-    private static final int LETTER_SUM = 0 + 25;
+    private static final int LETTER_SUM = 25;
 
     /**
      * MODIFIES: this

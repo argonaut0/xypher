@@ -3,6 +3,7 @@ package persistence;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.CipherSequence;
+import model.Encoder;
 import model.ciphers.Cipher;
 
 import java.io.*;
@@ -53,52 +54,34 @@ public class FileHandler {
 
     /**
      * REQUIRES: A filepath
-     * EFFECTS: Converts a file's contents to a Cipher
+     * EFFECTS: Converts a file's contents to a encoder
      * @param path The filepath.
-     * @return The cipher loaded from file.
-     * @throws IOException Problem loading cipher.
+     * @return The encoder loaded from file.
+     * @throws IOException Problem loading encoder.
      */
-    public Cipher loadCipher(String path) throws IOException, ClassNotFoundException {
-        if (path.indexOf(Cipher.ARG_DELIM) != -1) {
-            return gson.fromJson(readFile(path),
-                    (Type) Class.forName("model.ciphers." + path.substring(0, path.indexOf(Cipher.ARG_DELIM))));
+    public Encoder loadEncoder(String path) throws IOException, ClassNotFoundException {
+        if (path.contains("Cipher")) {
+            if (path.contains(Cipher.ARG_DELIM)) {
+                return gson.fromJson(readFile(path),
+                        (Type) Class.forName("model.ciphers." + path.substring(0, path.indexOf(Cipher.ARG_DELIM))));
+            } else {
+                return gson.fromJson(readFile(path),
+                        (Type) Class.forName("model.ciphers." + path));
+            }
         } else {
-            return gson.fromJson(readFile(path),
-                    (Type) Class.forName("model.ciphers." + path));
+            return gson.fromJson(readFile(path), CipherSequence.class);
         }
     }
 
     /**
-     * REQUIRES: A filepath
-     * EFFECTS: Converts a file's contents to a CipherSequence
-     * @param path The filepath.
-     * @return The sequence loaded from file.
-     * @throws IOException Problem loading sequence.
-     */
-    public CipherSequence loadSequence(String path) throws IOException {
-        return gson.fromJson(readFile(path), CipherSequence.class);
-    }
-
-    /**
-     * REQUIRES: The Cipher of the same name is not already saved.
+     * REQUIRES: The encoder of the same name is not already saved.
      * MODIFIES: filesystem
-     * EFFECTS: Saves a cipher to a new file.
-     * @param cipher The cipher to be saved.
-     * @throws IOException Problem saving cipher
+     * EFFECTS: Saves a encoder to a new file.
+     * @param encoder The encoder to be saved.
+     * @throws IOException Problem saving encoder
      */
-    public void saveCipher(Cipher cipher) throws IOException {
-        writeFile(cipher.toString(), gson.toJson(cipher));
-    }
-
-    /**
-     * REQUIRES: The sequence of the same name is not already saved.
-     * MODIFIES: filesystem
-     * EFFECTS: Saves a sequence to a new file.
-     * @param sequence The sequence to be saved.
-     * @throws IOException Problem saving cipher
-     */
-    public void saveSequence(CipherSequence sequence) throws IOException {
-        writeFile(sequence.toString(), gson.toJson(sequence));
+    public void saveEncoder(Encoder encoder) throws IOException {
+        writeFile(encoder.toString(), gson.toJson(encoder));
     }
 
     /**

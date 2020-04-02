@@ -43,26 +43,26 @@ public class XypherApp {
     }
 
     /**
-     * REQUIRES: The name of a valid cipher
+     * REQUIRES: The name of a valid encoder
      * MODIFIES: filesystem
-     * EFFECTS: Saves a cipher to file
-     * @param name The name of the cipher
+     * EFFECTS: Saves a encoder to file
+     * @param name The name of the encoder
      * @throws IllegalArgumentException Name is invalid
      * @throws IOException Error writing to file
      */
-    public void saveCipher(String name) throws IllegalArgumentException, IOException {
-        fileHandler.saveCipher(getCipher(name));
+    public void saveEncoder(String name) throws IllegalArgumentException, IOException {
+        fileHandler.saveEncoder(getCipher(name));
     }
 
     /**
-     * REQUIRES: The name of a valid cipher file
+     * REQUIRES: The name of a valid encoder file
      * MODIFIES: this
-     * EFFECTS: Loads a cipher from a file and adds it
-     * @param name The name of the cipher
+     * EFFECTS: Loads a encoder from a file and adds it
+     * @param name The name of the encoder
      */
-    public void loadCipher(String name) throws IOException {
+    public void loadEncoder(String name) throws IOException {
         try {
-            encoders.put(name, fileHandler.loadCipher(name));
+            encoders.put(name, fileHandler.loadEncoder(name));
         } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException("Invalid File");
         }
@@ -81,28 +81,6 @@ public class XypherApp {
         } else {
             throw new IllegalArgumentException("Encoder is not a Sequence");
         }
-    }
-
-    /**
-     * REQUIRES: The name of a valid sequence
-     * EFFECTS: Saves a sequence to file
-     * @param name The name of the sequence to save
-     * @throws IllegalArgumentException Invalid name
-     * @throws IOException Error writing file
-     */
-    public void saveSequence(String name) throws IllegalArgumentException, IOException {
-        fileHandler.saveSequence(getSequence(name));
-    }
-
-    /**
-     * REQUIRES: The name of a valid sequence file
-     * MODIFIES: this
-     * EFFECTS: Loads a sequence from file and adds it
-     * @param name sequence name
-     * @throws IOException Error Reading file
-     */
-    public void loadSequence(String name) throws IOException {
-        encoders.put(name, fileHandler.loadSequence(name));
     }
 
     /**

@@ -59,7 +59,7 @@ public class ClicheCLI {
 
     /**
      * REQUIRES: an alphabetic name
-     * mODIFIES: this
+     * MODIFIES: this
      * EFFECTS: adds a new sequence with a name
      * @param name the name
      */
@@ -133,45 +133,15 @@ public class ClicheCLI {
     }
 
     /**
-     * REQUIRES: a valid cipher name
+     * REQUIRES: a valid encoder name
      * MODIFIES: filesystem
-     * EFFECTS: saves a cipher to file
-     * @param name cipher name
+     * EFFECTS: saves a encoder to file
+     * @param name encoder name
      */
     @Command
-    public void saveCipher(String name) {
+    public void saveEncoder(String name) {
         try {
-            app.saveCipher(name);
-        } catch (IllegalArgumentException | IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * REQUIRES: a valid file name
-     * MODIFIES: this
-     * EFFECTS: reads and adds a cipher from file
-     * @param name cipher name
-     */
-    @Command
-    public void loadCipher(String name) {
-        try {
-            app.loadCipher(name);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * REQUIRES: a valid file name
-     * MODIFIES: filesystem
-     * EFFECTS: saves a sequence to file
-     * @param name sequence name
-     */
-    @Command
-    public void saveSequence(String name) {
-        try {
-            app.saveSequence(name);
+            app.saveEncoder(name);
         } catch (IllegalArgumentException | IOException e) {
             System.out.println(e.getMessage());
         }
@@ -180,13 +150,13 @@ public class ClicheCLI {
     /**
      * REQUIRES: a valid file name
      * MODIFIES: filesystem
-     * EFFECTS: reads and adds a sequence from file
-     * @param name sequence name
+     * EFFECTS: reads and adds a encoder from file
+     * @param name encoder name
      */
     @Command
-    public void loadSequence(String name) {
+    public void loadEncoder(String name) {
         try {
-            app.loadSequence(name);
+            app.loadEncoder(name);
         } catch (IllegalArgumentException | IOException e) {
             System.out.println(e.getMessage());
         }

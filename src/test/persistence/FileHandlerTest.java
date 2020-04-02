@@ -34,7 +34,7 @@ public class FileHandlerTest {
     @Test
     void loadCipherTest() {
         try {
-            CaesarCipher cipher = (CaesarCipher) fileHandler.loadCipher(LOAD_TEST_CIPHER);
+            CaesarCipher cipher = (CaesarCipher) fileHandler.loadEncoder(LOAD_TEST_CIPHER);
             assertEquals(5, cipher.getShift());
             assertEquals(LOAD_TEST_CIPHER, cipher.toString());
         } catch (IOException | ClassNotFoundException e) {
@@ -46,7 +46,7 @@ public class FileHandlerTest {
     @Test
     void loadNonConfigCipherTest() {
         try {
-            Cipher cipher = fileHandler.loadCipher("AtbashCipher");
+            Cipher cipher = (AtbashCipher) fileHandler.loadEncoder("AtbashCipher");
             assertEquals("AtbashCipher", cipher.toString());
             assertEquals(AtbashCipher.class, cipher.getClass());
         } catch (IOException | ClassNotFoundException e) {
@@ -58,7 +58,7 @@ public class FileHandlerTest {
     @Test
     void loadSequenceFailTest() {
         try {
-            CipherSequence sequence = fileHandler.loadSequence("TestSequenceError");
+            CipherSequence sequence = (CipherSequence) fileHandler.loadEncoder("TestSequenceError");
             fail("Exception not thrown");
         } catch (Exception e) {
         }
@@ -69,8 +69,8 @@ public class FileHandlerTest {
         File testFile = new File("./data/" + SAVE_TEST_CIPHER.toString() + FileHandler.FILE_EXT);
         testFile.deleteOnExit();
         try {
-            fileHandler.saveCipher(SAVE_TEST_CIPHER);
-            CaesarCipher readCipher = (CaesarCipher) fileHandler.loadCipher(SAVE_TEST_CIPHER.toString());
+            fileHandler.saveEncoder(SAVE_TEST_CIPHER);
+            CaesarCipher readCipher = (CaesarCipher) fileHandler.loadEncoder(SAVE_TEST_CIPHER.toString());
             assertEquals(SAVE_TEST_CIPHER.getShift(), readCipher.getShift());
             assertEquals(SAVE_TEST_CIPHER.toString(), readCipher.toString());
         } catch (IOException | ClassNotFoundException e) {
@@ -82,9 +82,9 @@ public class FileHandlerTest {
     @Test
     void loadSequenceTest() {
         try {
-            CipherSequence sequence = fileHandler.loadSequence(LOAD_TEST_SEQ);
+            CipherSequence sequence =  (CipherSequence) fileHandler.loadEncoder(LOAD_TEST_SEQ);
             assertEquals(LOAD_TEST_SEQ, sequence.toString());
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             fail("Exception thrown");
         }
@@ -99,11 +99,11 @@ public class FileHandlerTest {
         sequence.pushCipher(new AtbashCipher());
         sequence.pushCipher(new Rot13Cipher());
         try {
-            fileHandler.saveSequence(sequence);
-            CipherSequence readSeq = fileHandler.loadSequence("TestSaveSequence");
+            fileHandler.saveEncoder(sequence);
+            CipherSequence readSeq = (CipherSequence) fileHandler.loadEncoder("TestSaveSequence");
             assertEquals(sequence.toString(), readSeq.toString());
             assertEquals(sequence.encode("hello"), readSeq.encode("hello"));
-        } catch (IOException | IllegalArgumentException e) {
+        } catch (IOException | IllegalArgumentException | ClassNotFoundException e) {
             e.printStackTrace();
             fail("Exception thrown");
         }
