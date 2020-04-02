@@ -71,7 +71,7 @@ Notes: Invalid inputs will result in no operations performed. Exceptions are han
 the javafx library, so the overall application is robust.
 
 
-###Phase 4: Task 2:
+### Phase 4: Task 2:
 Type Hierarchy:
 - Encoder interface represents anything that can be used to encode text.
 - Encoder specifies two methods, String -> String encode() and String -> String decode().
@@ -84,7 +84,7 @@ to transform text. eg CaesarCipher shifts the letter by a certain number
 - CipherSequence stores a sequence of Ciphers and its implementation of encode() and decode() recursively calls encode()
 and decode() in all the Ciphers stored, encoding/decoding the text sequentially.
 
-###Phase 4: Task 3:
+### Phase 4: Task 3:
 - Reduced code duplication by merging saveCipher() and saveSequence() actions into general saveEncoder() action.
 - Reduced code duplication by merging loadCipher() and loadSequence() actions into general loadEncoder() action.
 - Cleaned up some typos and extraneous code.
