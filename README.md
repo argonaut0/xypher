@@ -1,6 +1,6 @@
 # Xypher
 
-## A program for encoding/decoding text with various ciphers
+## A program for encoding/decoding text with various ciphers (Originally an assignment for CPSC 210)
 
 Cryptography is an integral part of modern computing, and has an interesting and extensive history.
 This tool automates the use of common *pre-computer* cipher algorithms to allow easy exploration 
